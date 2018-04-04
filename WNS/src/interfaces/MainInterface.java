@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- *
+ *@author Juan Carlos
  * @author Reyes
  */
 public class MainInterface extends javax.swing.JFrame {
