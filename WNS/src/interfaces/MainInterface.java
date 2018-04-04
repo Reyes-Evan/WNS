@@ -16,7 +16,8 @@ import java.io.IOException;
 
 /**
  *@author Juan Carlos
- * @author Reyes
+ *@author Reyes
+ *@author Dulio Caggiano
  */
 public class MainInterface extends javax.swing.JFrame {
 
