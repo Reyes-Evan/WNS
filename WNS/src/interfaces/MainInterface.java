@@ -27,7 +27,8 @@ public class MainInterface extends javax.swing.JFrame {
     static Color base      = new Color (24, 41, 70);
     static Color primary   = new Color (14, 20, 32);
     static Color secondary = new Color (21, 31, 51);
-    static Color tertiary  = new Color (21, 44, 86);
+    static Color tertiary  = new Color (136, 90, 27);
+//    static Color tertiary  = new Color (21, 44, 86);
     static Color light     = new Color (25, 58, 118);
     static Color highlight = new Color (156, 110, 27);
     public static Color foreground= new Color (220, 220, 220);
@@ -147,8 +148,6 @@ public class MainInterface extends javax.swing.JFrame {
         terBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         terBtn3.setBackground(tertiary);
         terBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        terBtn4.setBackground(tertiary);
-        terBtn4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
     }
     
@@ -167,7 +166,6 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(terBtn1);
         makeButton(terBtn2);
         makeButton(terBtn3);
-        makeButton(terBtn4);
         
     try {
         //Set of the file to be used in this program
@@ -191,6 +189,7 @@ public class MainInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
+        jSeparator2 = new javax.swing.JSeparator();
         appBar = new javax.swing.JPanel();
         logoLbl = new javax.swing.JLabel();
         settingsMainBtn = new javax.swing.JLabel();
@@ -201,19 +200,19 @@ public class MainInterface extends javax.swing.JFrame {
         warehouseBtn = new javax.swing.JLabel();
         clientsBtn = new javax.swing.JLabel();
         secOptionBar = new javax.swing.JPanel();
-        secBtn1 = new javax.swing.JLabel();
-        secBtn2 = new javax.swing.JLabel();
-        secBtn3 = new javax.swing.JLabel();
-        terOptionBar = new javax.swing.JPanel();
         terBtn1 = new javax.swing.JLabel();
         terBtn2 = new javax.swing.JLabel();
         terBtn3 = new javax.swing.JLabel();
-        terBtn4 = new javax.swing.JLabel();
-        searchBar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        search = new javax.swing.JTextField();
+        terOptionBar = new javax.swing.JPanel();
+        secBtn1 = new javax.swing.JLabel();
+        secBtn2 = new javax.swing.JLabel();
+        secBtn3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        searchBar1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        search1 = new javax.swing.JTextField();
+
+        jSeparator2.setBackground(foreground);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -256,7 +255,7 @@ public class MainInterface extends javax.swing.JFrame {
         warehouseBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         warehouseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/box.png"))); // NOI18N
         warehouseBtn.setText("             ALMACÉN                 ");
-        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         warehouseBtn.setOpaque(true);
         warehouseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -284,6 +283,28 @@ public class MainInterface extends javax.swing.JFrame {
         secOptionBar.setBackground(new java.awt.Color(30, 34, 70));
         secOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        terBtn1.setBackground(tertiary);
+        terBtn1.setText("Opción ter 1");
+        terBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                terBtn1MouseClicked(evt);
+            }
+        });
+        secOptionBar.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 136));
+
+        terBtn2.setBackground(tertiary);
+        terBtn2.setText("Opción ter 2");
+        secOptionBar.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 80, 136));
+
+        terBtn3.setBackground(tertiary);
+        terBtn3.setText("Opción ter 3");
+        secOptionBar.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 272, 80, 136));
+
+        getContentPane().add(secOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 80, 410));
+
+        terOptionBar.setBackground(tertiary);
+        terOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         secBtn1.setBackground(highlight);
         secBtn1.setText("Opción sec 1");
         secBtn1.setOpaque(true);
@@ -292,69 +313,42 @@ public class MainInterface extends javax.swing.JFrame {
                 secBtn1MouseClicked(evt);
             }
         });
-        secOptionBar.add(secBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 153));
+        terOptionBar.add(secBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 50));
 
         secBtn2.setBackground(highlight);
         secBtn2.setText("Opción sec 2");
         secBtn2.setOpaque(true);
-        secOptionBar.add(secBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 110, 153));
+        terOptionBar.add(secBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 340, 50));
 
         secBtn3.setBackground(highlight);
         secBtn3.setText("Opción sec 3");
         secBtn3.setOpaque(true);
-        secOptionBar.add(secBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 110, 160));
+        terOptionBar.add(secBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 340, 40));
 
-        getContentPane().add(secOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 110, 460));
+        getContentPane().add(terOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1020, 50));
 
-        terOptionBar.setBackground(tertiary);
-        terOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        terBtn1.setBackground(tertiary);
-        terBtn1.setText("Opción ter 1");
-        terBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchBar1.setBackground(tertiary);
+        searchBar1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        searchBar1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, 30));
+
+        search1.setBackground(tertiary);
+        search1.setForeground(foreground);
+        search1.setText("Buscar...");
+        search1.setBorder(null);
+        search1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                terBtn1MouseClicked(evt);
+                search1MouseClicked(evt);
             }
         });
-        terOptionBar.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 182, 50));
+        searchBar1.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 160, 40));
 
-        terBtn2.setBackground(tertiary);
-        terBtn2.setText("Opción ter 2");
-        terOptionBar.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 182, 50));
+        jPanel1.add(searchBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, -1, -1));
 
-        terBtn3.setBackground(tertiary);
-        terBtn3.setText("Opción ter 3");
-        terOptionBar.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 182, 50));
-
-        terBtn4.setBackground(tertiary);
-        terBtn4.setText("Opción ter 4");
-        terOptionBar.add(terBtn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 182, 50));
-
-        searchBar.setBackground(tertiary);
-        searchBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
-        searchBar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, 30));
-
-        jSeparator1.setBackground(foreground);
-        searchBar.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 180, 10));
-
-        search.setBackground(tertiary);
-        search.setForeground(foreground);
-        search.setText("Buscar...");
-        search.setBorder(null);
-        search.setDragEnabled(true);
-        search.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchMouseClicked(evt);
-            }
-        });
-        searchBar.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 160, 40));
-
-        terOptionBar.add(searchBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 0, 190, 50));
-
-        getContentPane().add(terOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 910, 50));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 910, 400));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 940, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -402,24 +396,20 @@ public class MainInterface extends javax.swing.JFrame {
             terBtn1.setText("VER PRODUCTOS");
             terBtn2.setText("AGREGAR PRODUCTO");
             terBtn3.setText("EDITAR PRODUCTO");
-            terBtn4.setText("FILTRAR POR");
-            search.setText("Buscar producto...");
+//            terBtn4.setText("FILTRAR POR");
+//            search.setText("Buscar producto...");
         }
         
         else if (secBtn1.getText().equals(option[1])) {
             terBtn1.setText("VER CLIENTES");
             terBtn2.setText("AGREGAR CLIENTE");
             terBtn3.setText("EDITAR CLIENTE");
-            terBtn4.setText("FILTRAR POR");
-            search.setText("Buscar cliente...");
+//            terBtn4.setText("FILTRAR POR");
+//            search.setText("Buscar cliente...");
             
         }
         
     }//GEN-LAST:event_secBtn1MouseClicked
-
-    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-        search.setText("");
-    }//GEN-LAST:event_searchMouseClicked
 
     private void terBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn1MouseClicked
         final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
@@ -449,6 +439,10 @@ public class MainInterface extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_terBtn1MouseClicked
+
+    private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -489,14 +483,14 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel appBar;
     private javax.swing.JLabel clientsBtn;
     private javax.swing.JLabel helpMainBtn;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JPanel mainOptionBar;
-    private javax.swing.JTextField search;
-    private javax.swing.JPanel searchBar;
+    private javax.swing.JTextField search1;
+    private javax.swing.JPanel searchBar1;
     private javax.swing.JLabel secBtn1;
     private javax.swing.JLabel secBtn2;
     private javax.swing.JLabel secBtn3;
@@ -505,7 +499,6 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel terBtn1;
     private javax.swing.JLabel terBtn2;
     private javax.swing.JLabel terBtn3;
-    private javax.swing.JLabel terBtn4;
     private javax.swing.JPanel terOptionBar;
     private javax.swing.JLabel userImage;
     private javax.swing.JLabel userName;
