@@ -11,12 +11,6 @@ package interfaces;
  */
 public class Test {
     int a, b, c;
+    int j, k, l;
     
-    
-    
-    
-    
-    
-    //Editing
-    int a;
 }
