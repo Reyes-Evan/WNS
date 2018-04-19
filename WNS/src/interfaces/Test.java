@@ -10,5 +10,6 @@ package interfaces;
  * @author JuanCarlosSanchezRC
  */
 public class Test {
+    int a, b, c;
     
 }
