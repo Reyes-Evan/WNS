@@ -22,17 +22,31 @@ import java.io.IOException;
  */
 public class MainInterface extends javax.swing.JFrame {
 
+//    /*
+//    C O L O R   P A L E T T E :   C H A R L Y 
+//    */
+//    static Color base      = new Color (24, 41, 70);
+//    static Color primary   = new Color (14, 20, 32);
+//    static Color secondary = new Color (21, 31, 51);
+//    static Color tertiary  = new Color (136, 90, 27);
+////    static Color tertiary  = new Color (21, 44, 86);
+//    static Color light     = new Color (25, 58, 118);
+//    static Color highlight = new Color (156, 110, 27);
+//    public static Color foreground= new Color (220, 220, 220);
+//    int c           = 20;
+//    
     /*
-    C O L O R   P A L E T T E :   C H A R L Y 
+        C O L O R   P A L E T T E :   D A R K
     */
-    static Color base      = new Color (24, 41, 70);
-    static Color primary   = new Color (14, 20, 32);
-    static Color secondary = new Color (21, 31, 51);
-    static Color tertiary  = new Color (136, 90, 27);
-//    static Color tertiary  = new Color (21, 44, 86);
-    static Color light     = new Color (25, 58, 118);
+    static Color primary      = new Color (32, 36, 43); //fondo
+    static Color secondary   = new Color (40, 45, 54); //selected, second bckgrnd
+//    static Color secondary = new Color ();
+//    static Color tertiary  = new Color ();
+    static Color tertiary  = new Color (21, 44, 86);
+    static Color light     = new Color (138, 140, 143);
+    static Color dark     = new Color (25, 28, 33);
     static Color highlight = new Color (156, 110, 27);
-    public static Color foreground= new Color (220, 220, 220);
+    public static Color foreground= new Color (225, 225, 225);
     int c           = 20;
     
     ViewInventory viewInventory = new ViewInventory();
@@ -131,17 +145,17 @@ public class MainInterface extends javax.swing.JFrame {
     
     private void resetButtons () {
         
-        warehouseBtn.setBackground(secondary);
-        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        clientsBtn.setBackground(secondary);
-        clientsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        warehouseBtn.setBackground(secondary);
+//        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        clientsBtn.setBackground(secondary);
+//        clientsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
-        secBtn1.setBackground(highlight);
-        secBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        secBtn2.setBackground(highlight);
-        secBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        secBtn3.setBackground(highlight);
-        secBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        secBtn1.setBackground(highlight);
+//        secBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        secBtn2.setBackground(highlight);
+//        secBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        secBtn3.setBackground(highlight);
+//        secBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         
         terBtn1.setBackground(tertiary);
         terBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -159,11 +173,12 @@ public class MainInterface extends javax.swing.JFrame {
         initComponents();
         makeButton(settingsMainBtn);
         makeButton(helpMainBtn);
-        makeButton(warehouseBtn);
-        makeButton(clientsBtn);
-        makeButton(secBtn1);
-        makeButton(secBtn2);
-        makeButton(secBtn3);
+        makeButton(mainMenu);
+//        makeButton(warehouseBtn);
+//        makeButton(clientsBtn);
+//        makeButton(secBtn1);
+//        makeButton(secBtn2);
+//        makeButton(secBtn3);
         makeButton(terBtn1);
         makeButton(terBtn2);
         makeButton(terBtn3);
@@ -198,20 +213,17 @@ public class MainInterface extends javax.swing.JFrame {
         userImage = new javax.swing.JLabel();
         userName = new javax.swing.JLabel();
         mainOptionBar = new javax.swing.JPanel();
-        warehouseBtn = new javax.swing.JLabel();
-        clientsBtn = new javax.swing.JLabel();
-        secOptionBar = new javax.swing.JPanel();
+        mainMenu = new javax.swing.JLabel();
+        add = new javax.swing.JLabel();
+        searchPanel = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        slidingMenu = new javax.swing.JPanel();
         terBtn1 = new javax.swing.JLabel();
         terBtn2 = new javax.swing.JLabel();
         terBtn3 = new javax.swing.JLabel();
-        terOptionBar = new javax.swing.JPanel();
-        secBtn1 = new javax.swing.JLabel();
-        secBtn2 = new javax.swing.JLabel();
-        secBtn3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        searchBar1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        search1 = new javax.swing.JTextField();
+        inventory = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
 
@@ -226,7 +238,7 @@ public class MainInterface extends javax.swing.JFrame {
         appBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/wnslogo.png"))); // NOI18N
-        appBar.add(logoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 40));
+        appBar.add(logoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 140, 40));
 
         settingsMainBtn.setBackground(primary);
         settingsMainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/settingsMain.png"))); // NOI18N
@@ -246,171 +258,77 @@ public class MainInterface extends javax.swing.JFrame {
 
         getContentPane().add(appBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 40));
 
-        mainOptionBar.setBackground(new java.awt.Color(54, 56, 76));
+        mainOptionBar.setBackground(primary);
         mainOptionBar.setPreferredSize(new java.awt.Dimension(1080, 50));
         mainOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        warehouseBtn.setBackground(secondary);
-        warehouseBtn.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        warehouseBtn.setForeground(new java.awt.Color(255, 255, 255));
-        warehouseBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        warehouseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/box.png"))); // NOI18N
-        warehouseBtn.setText("             ALMACÉN                 ");
-        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        warehouseBtn.setOpaque(true);
-        warehouseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        mainMenu.setBackground(primary);
+        mainMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/mainMenu.png"))); // NOI18N
+        mainMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                warehouseBtnMouseClicked(evt);
+                mainMenuMouseClicked(evt);
             }
         });
-        mainOptionBar.add(warehouseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 50));
+        mainOptionBar.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
 
-        clientsBtn.setBackground(secondary);
-        clientsBtn.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        clientsBtn.setForeground(new java.awt.Color(255, 255, 255));
-        clientsBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        clientsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/people.png"))); // NOI18N
-        clientsBtn.setText("             CLIENTES                  ");
-        clientsBtn.setOpaque(true);
-        clientsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clientsBtnMouseClicked(evt);
+        add.setBackground(primary);
+        add.setForeground(foreground);
+        add.setText("Agregar producto");
+        mainOptionBar.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 110, 40));
+
+        searchPanel.setBackground(primary);
+        searchPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jSeparator1.setBackground(foreground);
+        searchPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 320, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
+        searchPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 30, 40));
+
+        jTextField1.setBackground(primary);
+        jTextField1.setForeground(foreground);
+        jTextField1.setText("Buscar...");
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
             }
         });
-        mainOptionBar.add(clientsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 510, 50));
+        searchPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
 
-        getContentPane().add(mainOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 50));
+        mainOptionBar.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 330, 40));
 
-        secOptionBar.setBackground(new java.awt.Color(30, 34, 70));
-        secOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(mainOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 45));
+
+        slidingMenu.setBackground(primary);
+        slidingMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         terBtn1.setBackground(tertiary);
-        terBtn1.setText("Opción ter 1");
+        terBtn1.setText("1");
         terBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 terBtn1MouseClicked(evt);
             }
         });
-        secOptionBar.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 136));
+        slidingMenu.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 140));
 
         terBtn2.setBackground(tertiary);
-        terBtn2.setText("Opción ter 2");
-        secOptionBar.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 80, 136));
+        terBtn2.setText("2");
+        slidingMenu.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 50, 136));
 
         terBtn3.setBackground(tertiary);
-        terBtn3.setText("Opción ter 3");
-        secOptionBar.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 272, 80, 136));
+        terBtn3.setText("3");
+        slidingMenu.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 50, 136));
 
-        getContentPane().add(secOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 80, 410));
+        getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
-        terOptionBar.setBackground(tertiary);
-        terOptionBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        secBtn1.setBackground(highlight);
-        secBtn1.setText("Opción sec 1");
-        secBtn1.setOpaque(true);
-        secBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                secBtn1MouseClicked(evt);
-            }
-        });
-        terOptionBar.add(secBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 50));
-
-        secBtn2.setBackground(highlight);
-        secBtn2.setText("Opción sec 2");
-        secBtn2.setOpaque(true);
-        terOptionBar.add(secBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 340, 50));
-
-        secBtn3.setBackground(highlight);
-        secBtn3.setText("Opción sec 3");
-        secBtn3.setOpaque(true);
-        terOptionBar.add(secBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 340, 40));
-
-        getContentPane().add(terOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1020, 50));
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        searchBar1.setBackground(tertiary);
-        searchBar1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
-        searchBar1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, 30));
-
-        search1.setBackground(tertiary);
-        search1.setForeground(foreground);
-        search1.setText("Buscar...");
-        search1.setBorder(null);
-        search1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                search1MouseClicked(evt);
-            }
-        });
-        searchBar1.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 160, 40));
-
-        jPanel1.add(searchBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 940, 410));
+        inventory.setBackground(secondary);
+        inventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /*
-        E V E N T S   M E T H O D S
-    */
-    
-    private void warehouseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_warehouseBtnMouseClicked
-//        resetButtons();
-//        warehouseBtn.setBackground(secondary);
-        deeperColor(warehouseBtn);
-        secBtn1.setText("INVENTARIO");
-        secBtn2.setText("BAJA DE DISPONIBILIDAD");
-        secBtn3.setText("ALTA DE DISPONIBILIDAD");
-        disabled(warehouseBtn);
-        clientsBtn.setBackground(secondary);
-        
-        secBtn1MouseClicked(evt);
-    }//GEN-LAST:event_warehouseBtnMouseClicked
-
-    private void clientsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsBtnMouseClicked
-//        resetButtons();
-//        clientsBtn.setBackground(secondary);
-        deeperColor(clientsBtn);
-        secBtn1.setText("CLIENTES");
-        secBtn2.setText("HISTORIAL");
-        secBtn3.setText("");
-        disabled(clientsBtn);
-        disabled(secBtn3);
-        warehouseBtn.setBackground(secondary);
-        
-        secBtn1MouseClicked(evt);
-    }//GEN-LAST:event_clientsBtnMouseClicked
-
-    private void secBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secBtn1MouseClicked
-//        resetButtons();
-        secBtn1.setBackground(highlight);
-        deeperColor(secBtn1);
-        disabled(secBtn1);
-        
-        final String option[] = {"INVENTARIO", "CLIENTES"};
-        
-        if (secBtn1.getText().equals(option[0])) {
-            terBtn1.setText("VER PRODUCTOS");
-            terBtn2.setText("AGREGAR PRODUCTO");
-            terBtn3.setText("EDITAR PRODUCTO");
-//            terBtn4.setText("FILTRAR POR");
-//            search.setText("Buscar producto...");
-        }
-        
-        else if (secBtn1.getText().equals(option[1])) {
-            terBtn1.setText("VER CLIENTES");
-            terBtn2.setText("AGREGAR CLIENTE");
-            terBtn3.setText("EDITAR CLIENTE");
-//            terBtn4.setText("FILTRAR POR");
-//            search.setText("Buscar cliente...");
-            
-        }
-        
-    }//GEN-LAST:event_secBtn1MouseClicked
 
     private void terBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn1MouseClicked
         final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
@@ -444,6 +362,16 @@ public class MainInterface extends javax.swing.JFrame {
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_search1MouseClicked
+
+    private void mainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainMenuMouseClicked
+        // TODO add your handling code here:
+        System.out.println("Main manu clicked");
+        slidingMenu.setVisible(!slidingMenu.isVisible());
+    }//GEN-LAST:event_mainMenuMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,29 +409,26 @@ public class MainInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel add;
     private javax.swing.JPanel appBar;
-    private javax.swing.JLabel clientsBtn;
     private javax.swing.JLabel helpMainBtn;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel inventory;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JOptionPane jOptionPane1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logoLbl;
+    private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
-    private javax.swing.JTextField search1;
-    private javax.swing.JPanel searchBar1;
-    private javax.swing.JLabel secBtn1;
-    private javax.swing.JLabel secBtn2;
-    private javax.swing.JLabel secBtn3;
-    private javax.swing.JPanel secOptionBar;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel settingsMainBtn;
+    private javax.swing.JPanel slidingMenu;
     private javax.swing.JLabel terBtn1;
     private javax.swing.JLabel terBtn2;
     private javax.swing.JLabel terBtn3;
-    private javax.swing.JPanel terOptionBar;
     private javax.swing.JLabel userImage;
     private javax.swing.JLabel userName;
-    private javax.swing.JLabel warehouseBtn;
     // End of variables declaration//GEN-END:variables
 
     private void pr(String s) {
