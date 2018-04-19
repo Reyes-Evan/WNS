@@ -13,6 +13,7 @@ import org.netbeans.lib.awtextra.*;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import resources.Style;
 
 /**
  *@author Juan Carlos
@@ -38,26 +39,20 @@ public class MainInterface extends javax.swing.JFrame {
     /*
         C O L O R   P A L E T T E :   D A R K
     */
-    static Color primary      = new Color (32, 36, 43); //fondo
-    static Color secondary   = new Color (40, 45, 54); //selected, second bckgrnd
-//    static Color secondary = new Color ();
-//    static Color tertiary  = new Color ();
-    static Color tertiary  = new Color (21, 44, 86);
-    static Color light     = new Color (138, 140, 143);
-    static Color dark     = new Color (25, 28, 33);
-    static Color highlight = new Color (156, 110, 27);
-    public static Color foreground= new Color (225, 225, 225);
-    int c           = 20;
+    Style style = new Style();
+    static Color primary    = Style.primary; //background
+    static Color secondary  = Style.secondary; //second background
+    static Color tertiary   = Style.tertiary; //right now, not used
+    static Color light      = Style.light; //lighten items
+    static Color dark       = Style.dark; //items almost black
+    static Color highlight  = Style.highlight; //still not used
+    static Color foreground = Style.foreground; //every font and icons (not yet)
+    int c           = 20;                               //range of color to increase/decrease when buttons are pressed/released
     
     ViewInventory viewInventory = new ViewInventory();
     
     java.io.File     file;
     RandomAccessFile raf;
-    
-    //Set of the file to be used in this program
-//        java.io.File file               = new java.io.File("products");
-//    //Set of the RAF linked to the File file with read and write properties
-//        RandomAccessFile raf    = new RandomAccessFile(file, "rw" );
     
     /*
         A U X I L I A R   M E T H O D S
@@ -143,6 +138,7 @@ public class MainInterface extends javax.swing.JFrame {
         
     }
     
+    //previous design method, now not used
     private void resetButtons () {
         
 //        warehouseBtn.setBackground(secondary);
@@ -167,10 +163,11 @@ public class MainInterface extends javax.swing.JFrame {
     }
     
     /**
-     * Creates new form MainInterface
+     * Creates new main Interface and do the next instructions every time the program start
      */
     public MainInterface() {
         initComponents();
+        
         makeButton(settingsMainBtn);
         makeButton(helpMainBtn);
         makeButton(mainMenu);
@@ -183,16 +180,43 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(terBtn2);
         makeButton(terBtn3);
         
-    try {
-        //Set of the file to be used in this program
-        file    = new java.io.File("products");
-        //Set of the RAF linked to the File file with read and write properties
-        raf     = new RandomAccessFile(file, "rw" );
-    }
-    catch (FileNotFoundException e) {
-        pr("File not found! " + e);
-    }
-//        warehouseBtnMouseClicked(new java.awt.event.MouseEvent()); I WANT TO INIT BY DEFAULT THIS OPTION
+        try {
+            //Set the file to be used in this program to store the products
+            file    = new java.io.File("products");
+            //Set the RAF linked to the File file with read and write properties
+            raf     = new RandomAccessFile(file, "rw" );
+        }
+        catch (FileNotFoundException e) {
+            pr("File not found! " + e);
+        }
+        
+        inventory.setVisible(true);
+        slidingMenu.setVisible(false);
+        
+        
+        //THESE ARE THE SAME INSTRUCTIONS THAN THE terBtn1MouseClicked... I DON'T KNOW HOW TO CALL THOSE INSTRUCTIONS WITHOUT HAVING TO REWRITE (CAN'T CALL THE METHOD) OR DOING ANOTHER INDEPENDIENT METHOD. IDEAS ARE ACCEPTED.
+        File productsFile   = new File(raf);
+            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
+            try {
+                products  = productsFile.allProducts();
+            } catch (IOException e) { pr ("IOException: " + e); }
+            
+            Product product;
+            int numberOfProducts    = products == null ? 0 : products.size(); 
+            
+//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
+            
+            inventory.setVisible(true);
+            //x position, y position, width, height, margen, counter, columns
+            int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
+            
+            while (i < numberOfProducts) {
+                x = w * (i % co) + m * (i % co + 1);
+                y = h * (i / co) + m * (i / co + 1);
+                product = products.get(i);
+                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
+                i++;
+            }
     }
 
     /**
@@ -325,17 +349,17 @@ public class MainInterface extends javax.swing.JFrame {
 
         inventory.setBackground(secondary);
         inventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 460));
+        getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void terBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn1MouseClicked
-        final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
+//        final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
         
-        if (terBtn1.getText().equals(option[0])) {
+//        if (terBtn1.getText().equals(option[0])) {
             File productsFile   = new File(raf);
-            ArrayList <Product> products = null;
+            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
             try {
                 products  = productsFile.allProducts();
             } catch (IOException e) { pr ("IOException: " + e); }
@@ -343,8 +367,9 @@ public class MainInterface extends javax.swing.JFrame {
             Product product;
             int numberOfProducts    = products == null ? 0 : products.size(); 
             
-            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
+//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
             
+            inventory.setVisible(true);
             //x position, y position, width, height, margen, counter, columns
             int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
             
@@ -352,10 +377,10 @@ public class MainInterface extends javax.swing.JFrame {
                 x = w * (i % co) + m * (i % co + 1);
                 y = h * (i / co) + m * (i / co + 1);
                 product = products.get(i);
-                viewInventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
+                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
                 i++;
             }
-        }
+//        }
         
     }//GEN-LAST:event_terBtn1MouseClicked
 
