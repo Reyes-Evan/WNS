@@ -23,35 +23,22 @@ import resources.Style;
  */
 public class MainInterface extends javax.swing.JFrame {
 
-//    /*
-//    C O L O R   P A L E T T E :   C H A R L Y 
-//    */
-//    static Color base      = new Color (24, 41, 70);
-//    static Color primary   = new Color (14, 20, 32);
-//    static Color secondary = new Color (21, 31, 51);
-//    static Color tertiary  = new Color (136, 90, 27);
-////    static Color tertiary  = new Color (21, 44, 86);
-//    static Color light     = new Color (25, 58, 118);
-//    static Color highlight = new Color (156, 110, 27);
-//    public static Color foreground= new Color (220, 220, 220);
-//    int c           = 20;
-//    
     /*
-        C O L O R   P A L E T T E :   D A R K
+        C O L O R   P A L E T T E 
     */
-    Style style = new Style();
-    static Color primary    = Style.primary; //background
-    static Color secondary  = Style.secondary; //second background
-    static Color tertiary   = Style.tertiary; //right now, not used
-    static Color light      = Style.light; //lighten items
-    static Color dark       = Style.dark; //items almost black
-    static Color highlight  = Style.highlight; //still not used
-    static Color foreground = Style.foreground; //every font and icons (not yet)
+    Color primary    = Style.primary; //background
+    Color secondary  = Style.secondary; //second background
+    Color tertiary   = Style.tertiary; //right now, not used
+    Color light      = Style.light; //lighten items
+    Color dark       = Style.dark; //items almost black
+    Color highlight  = Style.highlight; //still not used
+    Color foreground = Style.foreground; //every font and icons (not yet)
     int c           = 20;                               //range of color to increase/decrease when buttons are pressed/released
     
     ViewInventory viewInventory = new ViewInventory();
     
     java.io.File     file;
+    
     RandomAccessFile raf;
     
     /*
@@ -180,6 +167,7 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(terBtn2);
         makeButton(terBtn3);
         
+        
         makeButton(add);
         
         try {
@@ -244,7 +232,7 @@ public class MainInterface extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchProduct = new javax.swing.JTextField();
         slidingMenu = new javax.swing.JPanel();
         terBtn1 = new javax.swing.JLabel();
         terBtn2 = new javax.swing.JLabel();
@@ -288,7 +276,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         userName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         userName.setForeground(new java.awt.Color(204, 204, 204));
-        userName.setText("User");
+        userName.setText("Usuario");
         appBar.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 100, 20));
 
         getContentPane().add(appBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 40));
@@ -326,16 +314,21 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
         searchPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 30, 40));
 
-        jTextField1.setBackground(primary);
-        jTextField1.setForeground(foreground);
-        jTextField1.setText("Buscar...");
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        searchProduct.setBackground(primary);
+        searchProduct.setForeground(foreground);
+        searchProduct.setText("Buscar...");
+        searchProduct.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        searchProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchProductMouseClicked(evt);
             }
         });
-        searchPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
+        searchProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductActionPerformed(evt);
+            }
+        });
+        searchPanel.add(searchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
 
         mainOptionBar.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 330, 40));
 
@@ -447,9 +440,9 @@ public class MainInterface extends javax.swing.JFrame {
         slidingMenu.setVisible(!slidingMenu.isVisible());
     }//GEN-LAST:event_mainMenuMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchProductActionPerformed
 
     private void terBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn2MouseClicked
         // TODO add your handling code here:
@@ -465,6 +458,11 @@ public class MainInterface extends javax.swing.JFrame {
         addProductPane.setVisible(true);
         
     }//GEN-LAST:event_addMouseClicked
+
+    private void searchProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchProductMouseClicked
+        // TODO add your handling code here:
+        searchProduct.setText("");
+    }//GEN-LAST:event_searchProductMouseClicked
 
     /**
      * @param args the command line arguments
@@ -519,11 +517,11 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel settingsMainBtn;
     private javax.swing.JPanel slidingMenu;
     private javax.swing.JLabel terBtn1;
