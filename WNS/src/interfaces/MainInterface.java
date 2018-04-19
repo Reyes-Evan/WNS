@@ -180,6 +180,8 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(terBtn2);
         makeButton(terBtn3);
         
+        makeButton(add);
+        
         try {
             //Set the file to be used in this program to store the products
             file    = new java.io.File("products");
@@ -248,6 +250,15 @@ public class MainInterface extends javax.swing.JFrame {
         terBtn2 = new javax.swing.JLabel();
         terBtn3 = new javax.swing.JLabel();
         inventory = new javax.swing.JPanel();
+        addProductPane = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
 
@@ -299,7 +310,12 @@ public class MainInterface extends javax.swing.JFrame {
         add.setBackground(primary);
         add.setForeground(foreground);
         add.setText("Agregar producto");
-        mainOptionBar.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 110, 40));
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
+        mainOptionBar.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 40));
 
         searchPanel.setBackground(primary);
         searchPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -335,21 +351,58 @@ public class MainInterface extends javax.swing.JFrame {
                 terBtn1MouseClicked(evt);
             }
         });
-        slidingMenu.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 140));
+        slidingMenu.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 60));
 
         terBtn2.setBackground(tertiary);
         terBtn2.setText("2");
-        slidingMenu.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 50, 136));
+        terBtn2.setOpaque(true);
+        terBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                terBtn2MouseClicked(evt);
+            }
+        });
+        slidingMenu.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 70));
 
         terBtn3.setBackground(tertiary);
         terBtn3.setText("3");
-        slidingMenu.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 50, 136));
+        slidingMenu.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 50, 70));
 
         getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
         inventory.setBackground(secondary);
         inventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
+
+        addProductPane.setBackground(secondary);
+        addProductPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setText("Subcategoría");
+        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 250, 30));
+
+        jLabel3.setText("Nombre");
+        addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
+
+        jLabel4.setText("Código");
+        addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 250, 30));
+
+        jLabel5.setText("Descripción");
+        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 250, 30));
+
+        jLabel6.setText("Marca");
+        addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 250, 30));
+
+        jLabel7.setText("Modelo");
+        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 250, 30));
+
+        jLabel8.setText("Categoría");
+        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 250, 30));
+
+        getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
+
+        clients.setBackground(new java.awt.Color(204, 0, 51));
+        clients.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(clients, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
+        clients.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -398,6 +451,21 @@ public class MainInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void terBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn2MouseClicked
+        // TODO add your handling code here:
+        clients.setVisible(true);
+        inventory.setVisible(false);
+        addProductPane.setVisible(false);
+    }//GEN-LAST:event_terBtn2MouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // TODO add your handling code here:
+        clients.setVisible(false);
+        inventory.setVisible(false);
+        addProductPane.setVisible(true);
+        
+    }//GEN-LAST:event_addMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -435,10 +503,19 @@ public class MainInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add;
+    private javax.swing.JPanel addProductPane;
     private javax.swing.JPanel appBar;
+    private javax.swing.JPanel clients;
     private javax.swing.JLabel helpMainBtn;
     private javax.swing.JPanel inventory;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
