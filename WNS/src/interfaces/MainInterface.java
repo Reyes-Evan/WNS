@@ -127,26 +127,7 @@ public class MainInterface extends javax.swing.JFrame {
     
     //previous design method, now not used
     private void resetButtons () {
-        
-//        warehouseBtn.setBackground(secondary);
-//        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        clientsBtn.setBackground(secondary);
-//        clientsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
-//        secBtn1.setBackground(highlight);
-//        secBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        secBtn2.setBackground(highlight);
-//        secBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        secBtn3.setBackground(highlight);
-//        secBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
-        terBtn1.setBackground(tertiary);
-        terBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        terBtn2.setBackground(tertiary);
-        terBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        terBtn3.setBackground(tertiary);
-        terBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
+
     }
     
     /**
@@ -158,14 +139,9 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(settingsMainBtn);
         makeButton(helpMainBtn);
         makeButton(mainMenu);
-//        makeButton(warehouseBtn);
-//        makeButton(clientsBtn);
-//        makeButton(secBtn1);
-//        makeButton(secBtn2);
-//        makeButton(secBtn3);
-        makeButton(terBtn1);
-        makeButton(terBtn2);
-        makeButton(terBtn3);
+        makeButton(inventoryBtn);
+        makeButton(clientsBtn);
+        makeButton(historyBtn);
         
         
         makeButton(add);
@@ -183,30 +159,7 @@ public class MainInterface extends javax.swing.JFrame {
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
         
-        
-        //THESE ARE THE SAME INSTRUCTIONS THAN THE terBtn1MouseClicked... I DON'T KNOW HOW TO CALL THOSE INSTRUCTIONS WITHOUT HAVING TO REWRITE (CAN'T CALL THE METHOD) OR DOING ANOTHER INDEPENDIENT METHOD. IDEAS ARE ACCEPTED.
-        File productsFile   = new File(raf);
-            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
-            try {
-                products  = productsFile.allProducts();
-            } catch (IOException e) { pr ("IOException: " + e); }
-            
-            Product product;
-            int numberOfProducts    = products == null ? 0 : products.size(); 
-            
-//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
-            
-            inventory.setVisible(true);
-            //x position, y position, width, height, margen, counter, columns
-            int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
-            
-            while (i < numberOfProducts) {
-                x = w * (i % co) + m * (i % co + 1);
-                y = h * (i / co) + m * (i / co + 1);
-                product = products.get(i);
-                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
-                i++;
-            }
+        viewInventory();
     }
 
     /**
@@ -234,9 +187,9 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         searchProduct = new javax.swing.JTextField();
         slidingMenu = new javax.swing.JPanel();
-        terBtn1 = new javax.swing.JLabel();
-        terBtn2 = new javax.swing.JLabel();
-        terBtn3 = new javax.swing.JLabel();
+        inventoryBtn = new javax.swing.JLabel();
+        clientsBtn = new javax.swing.JLabel();
+        historyBtn = new javax.swing.JLabel();
         inventory = new javax.swing.JPanel();
         addProductPane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -337,28 +290,28 @@ public class MainInterface extends javax.swing.JFrame {
         slidingMenu.setBackground(primary);
         slidingMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        terBtn1.setBackground(tertiary);
-        terBtn1.setText("1");
-        terBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        inventoryBtn.setBackground(tertiary);
+        inventoryBtn.setText("1");
+        inventoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                terBtn1MouseClicked(evt);
+                inventoryBtnMouseClicked(evt);
             }
         });
-        slidingMenu.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 60));
+        slidingMenu.add(inventoryBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 60));
 
-        terBtn2.setBackground(tertiary);
-        terBtn2.setText("2");
-        terBtn2.setOpaque(true);
-        terBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+        clientsBtn.setBackground(tertiary);
+        clientsBtn.setText("2");
+        clientsBtn.setOpaque(true);
+        clientsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                terBtn2MouseClicked(evt);
+                clientsBtnMouseClicked(evt);
             }
         });
-        slidingMenu.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 70));
+        slidingMenu.add(clientsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 70));
 
-        terBtn3.setBackground(tertiary);
-        terBtn3.setText("3");
-        slidingMenu.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 50, 70));
+        historyBtn.setBackground(tertiary);
+        historyBtn.setText("3");
+        slidingMenu.add(historyBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 50, 70));
 
         getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
@@ -400,35 +353,9 @@ public class MainInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void terBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn1MouseClicked
-//        final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
-        
-//        if (terBtn1.getText().equals(option[0])) {
-            File productsFile   = new File(raf);
-            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
-            try {
-                products  = productsFile.allProducts();
-            } catch (IOException e) { pr ("IOException: " + e); }
-            
-            Product product;
-            int numberOfProducts    = products == null ? 0 : products.size(); 
-            
-//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
-            
-            inventory.setVisible(true);
-            //x position, y position, width, height, margen, counter, columns
-            int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
-            
-            while (i < numberOfProducts) {
-                x = w * (i % co) + m * (i % co + 1);
-                y = h * (i / co) + m * (i / co + 1);
-                product = products.get(i);
-                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
-                i++;
-            }
-//        }
-        
-    }//GEN-LAST:event_terBtn1MouseClicked
+    private void inventoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryBtnMouseClicked
+        viewInventory();
+    }//GEN-LAST:event_inventoryBtnMouseClicked
 
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
         // TODO add your handling code here:
@@ -444,12 +371,12 @@ public class MainInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchProductActionPerformed
 
-    private void terBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn2MouseClicked
+    private void clientsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsBtnMouseClicked
         // TODO add your handling code here:
         clients.setVisible(true);
         inventory.setVisible(false);
         addProductPane.setVisible(false);
-    }//GEN-LAST:event_terBtn2MouseClicked
+    }//GEN-LAST:event_clientsBtnMouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         // TODO add your handling code here:
@@ -504,8 +431,11 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel addProductPane;
     private javax.swing.JPanel appBar;
     private javax.swing.JPanel clients;
+    private javax.swing.JLabel clientsBtn;
     private javax.swing.JLabel helpMainBtn;
+    private javax.swing.JLabel historyBtn;
     private javax.swing.JPanel inventory;
+    private javax.swing.JLabel inventoryBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -524,9 +454,6 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel settingsMainBtn;
     private javax.swing.JPanel slidingMenu;
-    private javax.swing.JLabel terBtn1;
-    private javax.swing.JLabel terBtn2;
-    private javax.swing.JLabel terBtn3;
     private javax.swing.JLabel userImage;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
@@ -534,4 +461,35 @@ public class MainInterface extends javax.swing.JFrame {
     private void pr(String s) {
         System.out.println(s);
     }
+    
+    /*
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    METHODS CALLED BY EVENTS
+    
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    */
+    private void viewInventory () {
+        File productsFile   = new File(raf);
+        ArrayList <Product> products = null; //Arraylist to store all the current products in our database
+        try {
+            products  = productsFile.allProducts();
+        } catch (IOException e) { pr ("IOException: " + e); }
+
+        Product product;
+        int numberOfProducts    = products == null ? 0 : products.size(); 
+
+        inventory.setVisible(true);
+        
+        //x position, y position, width, height, margen, counter, columns
+        int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
+
+        while (i < numberOfProducts) {
+            x = w * (i % co) + m * (i % co + 1);
+            y = h * (i / co) + m * (i / co + 1);
+            product = products.get(i);
+            inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
+            i++;
+        }   
+    }  
 }
