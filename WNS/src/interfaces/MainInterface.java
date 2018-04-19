@@ -4,7 +4,7 @@
  * Ingeniería en Sistemas Computacionales. UDLAP.
  */
 package interfaces;
-
+//CAMBIO CHIQUITO
 import javax.swing.*;
 import java.awt.*;
 import java.io.RandomAccessFile;
