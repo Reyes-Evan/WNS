@@ -11,4 +11,11 @@ package interfaces;
  */
 public class Test {
     
+    
+    
+    
+    
+    
+    //Editing
+    int a;
 }
