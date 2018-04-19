@@ -11,7 +11,7 @@ package interfaces;
  */
 public class Test {
     int a, b, c;
-    
+    int j, k, g;
     
     
     
