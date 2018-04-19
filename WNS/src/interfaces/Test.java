@@ -12,4 +12,11 @@ package interfaces;
 public class Test {
     int a, b, c;
     
+    
+    
+    
+    
+    
+    //Editing
+    int a;
 }
