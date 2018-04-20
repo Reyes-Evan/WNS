@@ -4,9 +4,10 @@
  * Ingeniería en Sistemas Computacionales. UDLAP.
  */
 package interfaces;
-
+//CAMBIO CHIQUITO
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.RandomAccessFile;
 import wns.*;
 import org.netbeans.lib.awtextra.*;
@@ -23,35 +24,31 @@ import resources.Style;
  */
 public class MainInterface extends javax.swing.JFrame {
 
-//    /*
-//    C O L O R   P A L E T T E :   C H A R L Y 
-//    */
-//    static Color base      = new Color (24, 41, 70);
-//    static Color primary   = new Color (14, 20, 32);
-//    static Color secondary = new Color (21, 31, 51);
-//    static Color tertiary  = new Color (136, 90, 27);
-////    static Color tertiary  = new Color (21, 44, 86);
-//    static Color light     = new Color (25, 58, 118);
-//    static Color highlight = new Color (156, 110, 27);
-//    public static Color foreground= new Color (220, 220, 220);
-//    int c           = 20;
-//    
     /*
-        C O L O R   P A L E T T E :   D A R K
+        C O L O R   P A L E T T E 
     */
-    Style style = new Style();
-    static Color primary    = Style.primary; //background
-    static Color secondary  = Style.secondary; //second background
-    static Color tertiary   = Style.tertiary; //right now, not used
-    static Color light      = Style.light; //lighten items
-    static Color dark       = Style.dark; //items almost black
-    static Color highlight  = Style.highlight; //still not used
-    static Color foreground = Style.foreground; //every font and icons (not yet)
+    Color primary    = Style.primary; //background
+    Color secondary  = Style.secondary; //second background
+    Color tertiary   = Style.tertiary; //right now, not used
+    Color light      = Style.light; //lighten items
+    Color dark       = Style.dark; //items almost black
+    Color highlight  = Style.highlight; //still not used
+    Color foreground = Style.foreground; //every font and icons (not yet)
     int c           = 20;                               //range of color to increase/decrease when buttons are pressed/released
     
+    /*
+        W I N D O W   M A N A G E R  S T A T E S
+    */
+    
+    public enum WindowState{
+        INV_FULL, INV_SR_NAME, INV_SR_CATEGORY, INV_SR_SUBCATEGORY,
+        CLI_FULL, CLI_SR_NAME, CLI_SR_MAIL, CLI_SR_NUM
+    }
+
     ViewInventory viewInventory = new ViewInventory();
     
     java.io.File     file;
+    
     RandomAccessFile raf;
     
     /*
@@ -140,26 +137,7 @@ public class MainInterface extends javax.swing.JFrame {
     
     //previous design method, now not used
     private void resetButtons () {
-        
-//        warehouseBtn.setBackground(secondary);
-//        warehouseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        clientsBtn.setBackground(secondary);
-//        clientsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
-//        secBtn1.setBackground(highlight);
-//        secBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        secBtn2.setBackground(highlight);
-//        secBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-//        secBtn3.setBackground(highlight);
-//        secBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
-        terBtn1.setBackground(tertiary);
-        terBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        terBtn2.setBackground(tertiary);
-        terBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        terBtn3.setBackground(tertiary);
-        terBtn3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        
+
     }
     
     /**
@@ -171,14 +149,10 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(settingsMainBtn);
         makeButton(helpMainBtn);
         makeButton(mainMenu);
-//        makeButton(warehouseBtn);
-//        makeButton(clientsBtn);
-//        makeButton(secBtn1);
-//        makeButton(secBtn2);
-//        makeButton(secBtn3);
-        makeButton(terBtn1);
-        makeButton(terBtn2);
-        makeButton(terBtn3);
+        makeButton(inventoryBtn);
+        makeButton(clientsBtn);
+        makeButton(historyBtn);
+        
         
         makeButton(add);
         
@@ -195,30 +169,7 @@ public class MainInterface extends javax.swing.JFrame {
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
         
-        
-        //THESE ARE THE SAME INSTRUCTIONS THAN THE terBtn1MouseClicked... I DON'T KNOW HOW TO CALL THOSE INSTRUCTIONS WITHOUT HAVING TO REWRITE (CAN'T CALL THE METHOD) OR DOING ANOTHER INDEPENDIENT METHOD. IDEAS ARE ACCEPTED.
-        File productsFile   = new File(raf);
-            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
-            try {
-                products  = productsFile.allProducts();
-            } catch (IOException e) { pr ("IOException: " + e); }
-            
-            Product product;
-            int numberOfProducts    = products == null ? 0 : products.size(); 
-            
-//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
-            
-            inventory.setVisible(true);
-            //x position, y position, width, height, margen, counter, columns
-            int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
-            
-            while (i < numberOfProducts) {
-                x = w * (i % co) + m * (i % co + 1);
-                y = h * (i / co) + m * (i / co + 1);
-                product = products.get(i);
-                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
-                i++;
-            }
+        viewInventory();
     }
 
     /**
@@ -244,11 +195,12 @@ public class MainInterface extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        searchProduct = new javax.swing.JTextField();
+        filterBox = new javax.swing.JComboBox<>();
         slidingMenu = new javax.swing.JPanel();
-        terBtn1 = new javax.swing.JLabel();
-        terBtn2 = new javax.swing.JLabel();
-        terBtn3 = new javax.swing.JLabel();
+        inventoryBtn = new javax.swing.JLabel();
+        clientsBtn = new javax.swing.JLabel();
+        historyBtn = new javax.swing.JLabel();
         inventory = new javax.swing.JPanel();
         addProductPane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -288,7 +240,7 @@ public class MainInterface extends javax.swing.JFrame {
 
         userName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         userName.setForeground(new java.awt.Color(204, 204, 204));
-        userName.setText("User");
+        userName.setText("Usuario");
         appBar.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 100, 20));
 
         getContentPane().add(appBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 40));
@@ -326,46 +278,59 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/search.png"))); // NOI18N
         searchPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 30, 40));
 
-        jTextField1.setBackground(primary);
-        jTextField1.setForeground(foreground);
-        jTextField1.setText("Buscar...");
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        searchProduct.setBackground(primary);
+        searchProduct.setForeground(foreground);
+        searchProduct.setText("Buscar...");
+        searchProduct.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        searchProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchProductMouseClicked(evt);
             }
         });
-        searchPanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
+        searchProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchProductKeyPressed(evt);
+            }
+        });
+        searchPanel.add(searchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
 
         mainOptionBar.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 330, 40));
+
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Categoria", "Sub Cartegoria" }));
+        filterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterBoxActionPerformed(evt);
+            }
+        });
+        mainOptionBar.add(filterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         getContentPane().add(mainOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 45));
 
         slidingMenu.setBackground(primary);
         slidingMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        terBtn1.setBackground(tertiary);
-        terBtn1.setText("1");
-        terBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        inventoryBtn.setBackground(tertiary);
+        inventoryBtn.setText("1");
+        inventoryBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                terBtn1MouseClicked(evt);
+                inventoryBtnMouseClicked(evt);
             }
         });
-        slidingMenu.add(terBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 60));
+        slidingMenu.add(inventoryBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 60));
 
-        terBtn2.setBackground(tertiary);
-        terBtn2.setText("2");
-        terBtn2.setOpaque(true);
-        terBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+        clientsBtn.setBackground(tertiary);
+        clientsBtn.setText("2");
+        clientsBtn.setOpaque(true);
+        clientsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                terBtn2MouseClicked(evt);
+                clientsBtnMouseClicked(evt);
             }
         });
-        slidingMenu.add(terBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 70));
+        slidingMenu.add(clientsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 70));
 
-        terBtn3.setBackground(tertiary);
-        terBtn3.setText("3");
-        slidingMenu.add(terBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 50, 70));
+        historyBtn.setBackground(tertiary);
+        historyBtn.setText("3");
+        slidingMenu.add(historyBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 50, 70));
 
         getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
@@ -407,35 +372,9 @@ public class MainInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void terBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn1MouseClicked
-//        final String option[] = {"VER PRODUCTOS", "VER CLIENTES"};
-        
-//        if (terBtn1.getText().equals(option[0])) {
-            File productsFile   = new File(raf);
-            ArrayList <Product> products = null; //Arraylist to store all the current products in our database
-            try {
-                products  = productsFile.allProducts();
-            } catch (IOException e) { pr ("IOException: " + e); }
-            
-            Product product;
-            int numberOfProducts    = products == null ? 0 : products.size(); 
-            
-//            getContentPane().add(viewInventory, new AbsoluteConstraints(110, 140, 910, 410));
-            
-            inventory.setVisible(true);
-            //x position, y position, width, height, margen, counter, columns
-            int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
-            
-            while (i < numberOfProducts) {
-                x = w * (i % co) + m * (i % co + 1);
-                y = h * (i / co) + m * (i / co + 1);
-                product = products.get(i);
-                inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
-                i++;
-            }
-//        }
-        
-    }//GEN-LAST:event_terBtn1MouseClicked
+    private void inventoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryBtnMouseClicked
+        windowManager(WindowState.INV_FULL, null);
+    }//GEN-LAST:event_inventoryBtnMouseClicked
 
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
         // TODO add your handling code here:
@@ -447,16 +386,12 @@ public class MainInterface extends javax.swing.JFrame {
         slidingMenu.setVisible(!slidingMenu.isVisible());
     }//GEN-LAST:event_mainMenuMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void terBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terBtn2MouseClicked
+    private void clientsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsBtnMouseClicked
         // TODO add your handling code here:
         clients.setVisible(true);
         inventory.setVisible(false);
         addProductPane.setVisible(false);
-    }//GEN-LAST:event_terBtn2MouseClicked
+    }//GEN-LAST:event_clientsBtnMouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         // TODO add your handling code here:
@@ -465,6 +400,40 @@ public class MainInterface extends javax.swing.JFrame {
         addProductPane.setVisible(true);
         
     }//GEN-LAST:event_addMouseClicked
+
+    private void searchProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchProductMouseClicked
+        // TODO add your handling code here:
+        searchProduct.setText("");
+    }//GEN-LAST:event_searchProductMouseClicked
+
+    private void searchProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchProductKeyPressed
+        // TODO add your handling code here:
+         String searchKey = searchProduct.getText();
+         String filterKey = String.valueOf(filterBox.getSelectedItem()).trim();
+         
+         
+        if((evt.getKeyCode() == KeyEvent.VK_ENTER) && searchKey!=null){
+            
+            switch(filterKey){
+                
+                case "Nombre": windowManager(WindowState.INV_SR_NAME, searchKey);
+                break;
+                
+                case "Categoria": windowManager(WindowState.INV_SR_CATEGORY, searchKey);
+                break;
+                
+                case "SubCategoria": windowManager(WindowState.INV_SR_SUBCATEGORY, searchKey);
+                break;
+                
+                default : windowManager(WindowState.INV_SR_NAME, searchKey);
+            }
+            
+        }
+    }//GEN-LAST:event_searchProductKeyPressed
+
+    private void filterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filterBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,8 +475,12 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel addProductPane;
     private javax.swing.JPanel appBar;
     private javax.swing.JPanel clients;
+    private javax.swing.JLabel clientsBtn;
+    private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel helpMainBtn;
+    private javax.swing.JLabel historyBtn;
     private javax.swing.JPanel inventory;
+    private javax.swing.JLabel inventoryBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -519,21 +492,122 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel settingsMainBtn;
     private javax.swing.JPanel slidingMenu;
-    private javax.swing.JLabel terBtn1;
-    private javax.swing.JLabel terBtn2;
-    private javax.swing.JLabel terBtn3;
     private javax.swing.JLabel userImage;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
 
     private void pr(String s) {
         System.out.println(s);
+    }
+    
+    /*
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    METHODS CALLED BY EVENTS
+    
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    */
+    /*
+    private void viewInventory () {
+        File productsFile   = new File(raf);
+        ArrayList <Product> products = null; //Arraylist to store all the current products in our database
+        try {
+            products  = productsFile.allProducts();
+        } catch (IOException e) { pr ("IOException: " + e); }
+
+        Product product;
+        int numberOfProducts    = products == null ? 0 : products.size(); 
+
+        inventory.setVisible(true);
+        
+        //x position, y position, width, height, margen, counter, columns
+        int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
+
+        while (i < numberOfProducts) {
+            x = w * (i % co) + m * (i % co + 1);
+            y = h * (i / co) + m * (i / co + 1);
+            product = products.get(i);
+            inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
+            i++;
+        }   
+    }
+    */
+    
+    /*
+        PAINT THE INVENTORY PANEL WITH THE GIVEN LIST
+    */
+    private void paintInventory(ArrayList<Product> productsToShow){
+        Product product;
+        int numberOfProducts    = productsToShow == null ? 0 : productsToShow.size(); 
+        
+        inventory.removeAll();
+        inventory.revalidate();
+        inventory.repaint();
+        inventory.setVisible(true);
+        
+        //x position, y position, width, height, margen, counter, columns
+        int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
+
+        while (i < numberOfProducts) {
+            x = w * (i % co) + m * (i % co + 1);
+            y = h * (i / co) + m * (i / co + 1);
+            product = productsToShow.get(i);
+            inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
+            i++;
+        }   
+    }
+    
+    /*
+        MANAGE ALL THE WINDOW STATES 
+    */
+    private void windowManager(WindowState state, String searchKey){
+       File productsFile   = new File(raf);
+       ArrayList <Product> products = null;
+        
+       switch(state){
+           
+           case INV_FULL:
+               try {
+                    products  = productsFile.allProducts();
+                    }catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+           break;
+           
+           case INV_SR_NAME:
+               try {
+                    products  = productsFile.searchByName(searchKey);
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+            
+           case INV_SR_CATEGORY:
+               try {
+                    products  = productsFile.searchByCategory(searchKey);
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+            
+           case INV_SR_SUBCATEGORY: 
+               try {
+                    products  = productsFile.searchBySubCategory(searchKey);
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+            
+           default:
+               try {
+                    products  = productsFile.allProducts();
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+       }
+        
     }
 }

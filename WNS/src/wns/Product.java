@@ -299,7 +299,7 @@ public class Product {
         priceLbl = new JLabel ("$ " + String.format("%3f", getPrice()));
         priceLbl.setForeground(Style.foreground);
         pane.add(priceLbl, new AbsoluteConstraints(50, 45, 100, -1));
-        
+//        image.setImage(image.);
         
         return pane;
     }
