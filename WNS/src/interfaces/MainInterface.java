@@ -152,7 +152,8 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(inventoryBtn);
         makeButton(clientsBtn);
         makeButton(historyBtn);
-        
+        makeButton(productBtn);
+        makeButton(cancelBtn);
         
         makeButton(add);
         
@@ -169,7 +170,7 @@ public class MainInterface extends javax.swing.JFrame {
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
         
-        viewInventory();
+        //viewInventory();
     }
 
     /**
@@ -210,6 +211,15 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        codeField = new javax.swing.JTextField();
+        descriptionField = new javax.swing.JTextField();
+        brandField = new javax.swing.JTextField();
+        modelField = new javax.swing.JTextField();
+        categoryField = new javax.swing.JTextField();
+        subcategoryField = new javax.swing.JTextField();
+        productBtn = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JLabel();
         clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
@@ -342,25 +352,77 @@ public class MainInterface extends javax.swing.JFrame {
         addProductPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Subcategoría");
-        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 250, 30));
+        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 90, 30));
 
         jLabel3.setText("Nombre");
-        addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 250, 30));
+        addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, 30));
 
         jLabel4.setText("Código");
-        addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 250, 30));
+        addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 80, 30));
 
         jLabel5.setText("Descripción");
-        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 250, 30));
+        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 80, 30));
 
         jLabel6.setText("Marca");
-        addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 250, 30));
+        addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 80, 30));
 
         jLabel7.setText("Modelo");
-        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 250, 30));
+        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 80, 30));
 
         jLabel8.setText("Categoría");
-        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 250, 30));
+        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 90, 30));
+
+        nameField.setBackground(secondary);
+        nameField.setForeground(foreground);
+        nameField.setText("Nombre");
+        nameField.setToolTipText("");
+        nameField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        nameField.setCaretColor(new java.awt.Color(255, 255, 255));
+        nameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameFieldMouseClicked(evt);
+            }
+        });
+        addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 30));
+
+        codeField.setText("Código");
+        addProductPane.add(codeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
+
+        descriptionField.setText("Descripción");
+        addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
+
+        brandField.setText("Marca");
+        addProductPane.add(brandField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
+
+        modelField.setText("Modelo");
+        addProductPane.add(modelField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
+
+        categoryField.setText("Categoría");
+        addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
+
+        subcategoryField.setText("Subcategoría");
+        addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 170, 30));
+
+        productBtn.setBackground(secondary);
+        productBtn.setForeground(foreground);
+        productBtn.setText("Agregar producto");
+        productBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productBtnMouseClicked(evt);
+            }
+        });
+        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, -1, -1));
+
+        cancelBtn.setBackground(secondary);
+        cancelBtn.setForeground(foreground);
+        cancelBtn.setText("Cancelar");
+        cancelBtn.setToolTipText("");
+        cancelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelBtnMouseClicked(evt);
+            }
+        });
+        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
 
         getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
@@ -374,6 +436,7 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void inventoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryBtnMouseClicked
         windowManager(WindowState.INV_FULL, null);
+        //nameField.setEditable(false);
     }//GEN-LAST:event_inventoryBtnMouseClicked
 
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
@@ -430,10 +493,26 @@ public class MainInterface extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_searchProductKeyPressed
-
+ 
     private void filterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filterBoxActionPerformed
+
+    private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
+        // TODO add your handling code here:
+        nameField.setText(null);
+    }//GEN-LAST:event_nameFieldMouseClicked
+
+    private void productBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productBtnMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
+        windowManager(WindowState.INV_FULL, null);
+    }//GEN-LAST:event_productBtnMouseClicked
+
+    private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
+        // TODO add your handling code here:
+        windowManager(WindowState.INV_FULL, null);
+    }//GEN-LAST:event_cancelBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -474,8 +553,13 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel add;
     private javax.swing.JPanel addProductPane;
     private javax.swing.JPanel appBar;
+    private javax.swing.JTextField brandField;
+    private javax.swing.JLabel cancelBtn;
+    private javax.swing.JTextField categoryField;
     private javax.swing.JPanel clients;
     private javax.swing.JLabel clientsBtn;
+    private javax.swing.JTextField codeField;
+    private javax.swing.JTextField descriptionField;
     private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel helpMainBtn;
     private javax.swing.JLabel historyBtn;
@@ -495,10 +579,14 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
+    private javax.swing.JTextField modelField;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JLabel productBtn;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel settingsMainBtn;
     private javax.swing.JPanel slidingMenu;
+    private javax.swing.JTextField subcategoryField;
     private javax.swing.JLabel userImage;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
