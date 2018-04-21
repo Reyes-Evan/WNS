@@ -152,7 +152,7 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(inventoryBtn);
         makeButton(clientsBtn);
         makeButton(historyBtn);
-        
+        makeButton(filterBtn);
         
         makeButton(add);
         
@@ -168,8 +168,8 @@ public class MainInterface extends javax.swing.JFrame {
         
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
-        
-        viewInventory();
+        filterMenu.setVisible(false);
+        windowManager(WindowState.INV_FULL, null);
     }
 
     /**
@@ -192,15 +192,17 @@ public class MainInterface extends javax.swing.JFrame {
         mainOptionBar = new javax.swing.JPanel();
         mainMenu = new javax.swing.JLabel();
         add = new javax.swing.JLabel();
+        filterBtn = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         searchProduct = new javax.swing.JTextField();
-        filterBox = new javax.swing.JComboBox<>();
         slidingMenu = new javax.swing.JPanel();
         inventoryBtn = new javax.swing.JLabel();
         clientsBtn = new javax.swing.JLabel();
         historyBtn = new javax.swing.JLabel();
+        filterMenu = new javax.swing.JPanel();
+        filterBox = new javax.swing.JComboBox<>();
         inventory = new javax.swing.JPanel();
         addProductPane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -210,6 +212,7 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        searchResult = new javax.swing.JLabel();
         clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
@@ -269,6 +272,11 @@ public class MainInterface extends javax.swing.JFrame {
         });
         mainOptionBar.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 40));
 
+        filterBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        filterBtn.setText("Filtrar ");
+        filterBtn.setToolTipText("");
+        mainOptionBar.add(filterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 110, 30));
+
         searchPanel.setBackground(primary);
         searchPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -295,14 +303,6 @@ public class MainInterface extends javax.swing.JFrame {
         searchPanel.add(searchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
 
         mainOptionBar.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 330, 40));
-
-        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Categoria", "Sub Cartegoria" }));
-        filterBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterBoxActionPerformed(evt);
-            }
-        });
-        mainOptionBar.add(filterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         getContentPane().add(mainOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 45));
 
@@ -334,6 +334,18 @@ public class MainInterface extends javax.swing.JFrame {
 
         getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
+        filterMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Categoria", "Sub Cartegoria" }));
+        filterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterBoxActionPerformed(evt);
+            }
+        });
+        filterMenu.add(filterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
+
+        getContentPane().add(filterMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 80, 100, 470));
+
         inventory.setBackground(secondary);
         inventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
@@ -361,6 +373,10 @@ public class MainInterface extends javax.swing.JFrame {
 
         jLabel8.setText("Categoría");
         addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 250, 30));
+
+        searchResult.setForeground(new java.awt.Color(255, 255, 255));
+        searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addProductPane.add(searchResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 320, 20));
 
         getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
@@ -411,8 +427,10 @@ public class MainInterface extends javax.swing.JFrame {
          String searchKey = searchProduct.getText();
          String filterKey = String.valueOf(filterBox.getSelectedItem()).trim();
          
-         
         if((evt.getKeyCode() == KeyEvent.VK_ENTER) && searchKey!=null){
+            
+            searchResult.setVisible(true);
+            searchResult.setText("Resultado de búsqueda "+searchKey+":");
             
             switch(filterKey){
                 
@@ -477,6 +495,8 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel clients;
     private javax.swing.JLabel clientsBtn;
     private javax.swing.JComboBox<String> filterBox;
+    private javax.swing.JLabel filterBtn;
+    private javax.swing.JPanel filterMenu;
     private javax.swing.JLabel helpMainBtn;
     private javax.swing.JLabel historyBtn;
     private javax.swing.JPanel inventory;
@@ -497,6 +517,7 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel mainOptionBar;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchProduct;
+    private javax.swing.JLabel searchResult;
     private javax.swing.JLabel settingsMainBtn;
     private javax.swing.JPanel slidingMenu;
     private javax.swing.JLabel userImage;
@@ -577,7 +598,8 @@ public class MainInterface extends javax.swing.JFrame {
                try {
                     products  = productsFile.allProducts();
                     }catch (IOException e) { pr ("IOException: " + e); }
-                 paintInventory(products);
+                searchResult.setText(null);
+                paintInventory(products);
            break;
            
            case INV_SR_NAME:
