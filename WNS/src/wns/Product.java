@@ -13,6 +13,7 @@ import java.io.RandomAccessFile;
 import java.io.IOException;
 import javax.swing.*;
 import org.netbeans.lib.awtextra.*;
+import resources.Style;
 
 import interfaces.MainInterface;
 import java.awt.Color;
@@ -279,24 +280,26 @@ public class Product {
         pane    = new JPanel (new AbsoluteLayout());
         
         pane.setOpaque(false);
-//        pane.setForeground();
         
         imageLbl = new JLabel ("IMG"); // IN THE FUTURE, HERE WILL BE THE FOLLOWING CODE: imageLbl = new JLabel (new ImageIcon(getClass.getResource("/resources/" + name + extension));
         pane.add(imageLbl, new AbsoluteConstraints(0, 0, 50, 60));
         
         nameLbl = new JLabel (getName());
-//        nameLbl.setForeground(Color.red);
+        nameLbl.setForeground(Style.foreground);
         pane.add(nameLbl, new AbsoluteConstraints(50, 0, 100, -1));
         
         categoryLbl = new JLabel (getCategory());
+        categoryLbl.setForeground(Style.foreground);
         pane.add(categoryLbl, new AbsoluteConstraints(50, 15, 100, -1));
         
         availabilityLbl = new JLabel (getAvailability() + " en inventario");
+        availabilityLbl.setForeground(Style.foreground);
         pane.add(availabilityLbl, new AbsoluteConstraints(50, 30, 100, -1));
         
         priceLbl = new JLabel ("$ " + String.format("%3f", getPrice()));
+        priceLbl.setForeground(Style.foreground);
         pane.add(priceLbl, new AbsoluteConstraints(50, 45, 100, -1));
-        
+//        image.setImage(image.);
         
         return pane;
     }

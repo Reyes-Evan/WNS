@@ -18,6 +18,7 @@ public class ViewInventory extends javax.swing.JPanel {
      */
     public ViewInventory() {
         initComponents();
+        
     }
 
     /**
@@ -31,7 +32,7 @@ public class ViewInventory extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(MainInterface.light);
+        setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(910, 420));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

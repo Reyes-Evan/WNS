@@ -3,7 +3,7 @@
  * Dulio Paolo Caggiano Amand               156449
  * Jose Miguel Garcia Reyes                 155871
  * Jordi Omar Ponce Bonfil                  155718
- * Juan Carlos                              15
+ * Juan Carlos                              155713
  * Ingeniería en Sistemas Computacionales. UDLAP.
  */
 

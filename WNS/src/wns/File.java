@@ -5,6 +5,7 @@
  */
 package wns;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -207,4 +208,80 @@ public class File {
         
         return products;
     }
+    
+    /*
+        SEARCH  METHODS FOR INVENTORY
+    */
+    
+    
+    public ArrayList searchByName(String name) throws IOException{
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            if(inventory.get(i).getName().trim().equals(name))
+                result.add(inventory.get(i));
+        }
+   
+       return result;
+        
+    }
+    
+    public ArrayList searchByCategory(String category) throws IOException{
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            if(inventory.get(i).getCategory().trim().equals(category))
+                result.add(inventory.get(i));
+        }
+       return result;
+    }
+    
+    public ArrayList searchBySubCategory(String subcatergory) throws IOException{
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            if(inventory.get(i).getSubcategory().trim().equals(subcatergory))
+                result.add(inventory.get(i));
+        }
+        
+       return result;
+    }
+
+    public ArrayList<Product> searchByPriceRange(int minPrice, int maxPrice) throws IOException {
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        double price = 0;
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            price = inventory.get(i).getPrice();
+            if((price>=minPrice) && (price<=maxPrice))
+                result.add(inventory.get(i));
+        }
+        
+       return result;
+    }
+
+    public ArrayList<Product> searchByAvalRange(int minAval, int maxAval) throws IOException {
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        int aval = 0;
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            aval = inventory.get(i).getAvailability();
+            if((aval>=minAval) && (aval<=maxAval))
+                result.add(inventory.get(i));
+        }
+        
+       return result;
+    }
+    
+    
 }
