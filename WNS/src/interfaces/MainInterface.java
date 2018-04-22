@@ -548,10 +548,9 @@ public class MainInterface extends javax.swing.JFrame {
             newProduct.display();
             
             try {
-                pr ("BEFORE");
 //                listProducts.insert(new Product(name, category, subcategory, description, location, price, availability));
                 listProducts.insert(newProduct);
-                pr ("AFTER");
+                
             } catch (IOException ex) {
                 pr ("IOException: " + ex);
             }
