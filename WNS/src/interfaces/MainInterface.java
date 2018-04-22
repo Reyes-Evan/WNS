@@ -13,6 +13,8 @@ import org.netbeans.lib.awtextra.*;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import resources.Style;
 
 /**
@@ -47,9 +49,9 @@ public class MainInterface extends javax.swing.JFrame {
 
     ViewInventory viewInventory = new ViewInventory();
     
-    java.io.File     file;
+    java.io.File     productsFileX;
     
-    RandomAccessFile raf;
+    RandomAccessFile productsRAF;
     
     /*
         A U X I L I A R   M E T H O D S
@@ -158,9 +160,9 @@ public class MainInterface extends javax.swing.JFrame {
         
         try {
             //Set the file to be used in this program to store the products
-            file    = new java.io.File("products");
+            productsFileX    = new java.io.File("products");
             //Set the RAF linked to the File file with read and write properties
-            raf     = new RandomAccessFile(file, "rw" );
+            productsRAF     = new RandomAccessFile(productsFileX, "rw" );
         }
         catch (FileNotFoundException e) {
             pr("File not found! " + e);
@@ -392,7 +394,6 @@ public class MainInterface extends javax.swing.JFrame {
 
         codeField.setBackground(secondary);
         codeField.setForeground(foreground);
-        codeField.setText(" ");
         codeField.setToolTipText("");
         addProductPane.add(codeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
 
@@ -523,6 +524,7 @@ public class MainInterface extends javax.swing.JFrame {
     private void productBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productBtnMouseClicked
         // TODO add your handling code here:
         Product newProduct = new Product();
+        File listProducts = new File(productsRAF);
         
         if (nameField.getText().isEmpty() || descriptionField.getText().isEmpty() || categoryField.getText().isEmpty() || subcategoryField.getText().isEmpty() || brandField.getText().isEmpty() || codeField.getText().isEmpty() || modelField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Todos los campos deben ser rellenados", "Error: checar campos", JOptionPane.INFORMATION_MESSAGE);
@@ -533,16 +535,20 @@ public class MainInterface extends javax.swing.JFrame {
             newProduct.setCategory(categoryField.getText());
             newProduct.setSubcategory(subcategoryField.getText());
             newProduct.setLocation(brandField.getText());
-            newProduct.setPrice(Integer.parseInt(codeField.getText()));
+            newProduct.setPrice(Double.parseDouble(codeField.getText()));
             newProduct.setAvailability(Integer.parseInt(modelField.getText()));
             
-            //raf.insert(newProduct);
+            /*try {
+                listProducts.insert(newProduct);
+            } catch (IOException ex) {
+                pr ("IOException: " + ex);
+            }*/
             JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
             
             clients.setVisible(false);
             inventory.setVisible(true);
             addProductPane.setVisible(false);
-            
+
             nameField.setText(null);
             descriptionField.setText(null);
             categoryField.setText(null);
@@ -713,7 +719,7 @@ public class MainInterface extends javax.swing.JFrame {
         MANAGE ALL THE WINDOW STATES 
     */
     private void windowManager(WindowState state, String searchKey){
-       File productsFile   = new File(raf);
+       File productsFile   = new File(productsRAF);
        ArrayList <Product> products = null;
         
        switch(state){

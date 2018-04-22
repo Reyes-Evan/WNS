@@ -143,7 +143,7 @@ public class Product {
      * Price cannot be a negative or zero number.
      * @param newPrice
      */
-    public void setPrice (int newPrice) {
+    public void setPrice (double newPrice) {
         if (newPrice <= 0)
             System.out.println("\tPrice should be nonnegative!");
         else
