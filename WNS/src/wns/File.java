@@ -33,11 +33,16 @@ public class File {
         int x = 0;
         
         raf.seek(x);
+        System.out.println("seek");
         while (raf.readByte() != -1) {
+            System.out.println("x = " + x);
             temp.read(x, raf);
+            temp.display();
             
             x = temp.getNext();
+            System.out.println("next = " + x);
         }
+        System.out.println("end while");
         return (int) raf.getFilePointer() - 1;
     }
         
@@ -49,8 +54,11 @@ public class File {
      */
     public void insert (Product product) throws IOException {
         raf.seek(searchEOF());
+        System.out.println("seek");
         product.write(raf);
+        System.out.println("write");
         raf.writeByte(255);
+        System.out.println("writebyte");
     }
     
     /**

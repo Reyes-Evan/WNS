@@ -43,7 +43,12 @@ public class Product {
     private JLabel availabilityLbl;
     private JLabel imageLbl;
     
-    public Product () {}
+    public Product () {
+        name = description = category = subcategory = location = "";
+        price = availability = 0;
+        status = ACTIVE;
+        nextInFile = -1;
+    }
     
     public Product (String name, String category, String subcategory, String description, String location, double price, int availability) {
         this.name           = name;
