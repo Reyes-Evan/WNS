@@ -4,6 +4,8 @@
  * Ingeniería en Sistemas Computacionales. UDLAP.
  */
 package interfaces;
+
+
 //CAMBIO CHIQUITO
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +16,10 @@ import org.netbeans.lib.awtextra.*;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import resources.Style;
+import slider.*;
 
 /**
  *@author Juan Carlos
@@ -42,7 +47,7 @@ public class MainInterface extends javax.swing.JFrame {
     
     public enum WindowState{
         INV_FULL, INV_SR_NAME, INV_SR_CATEGORY, INV_SR_SUBCATEGORY,
-        CLI_FULL, CLI_SR_NAME, CLI_SR_MAIL, CLI_SR_NUM
+        CLI_FULL, CLI_SR_NAME, CLI_SR_MAIL, CLI_SR_NUM, RANGE_PRICE, RANGE_AVAL
     }
 
     ViewInventory viewInventory = new ViewInventory();
@@ -51,6 +56,9 @@ public class MainInterface extends javax.swing.JFrame {
     
     RandomAccessFile raf;
     
+    
+    RangeSlider price;
+    RangeSlider availability;
     /*
         A U X I L I A R   M E T H O D S
     */
@@ -156,6 +164,41 @@ public class MainInterface extends javax.swing.JFrame {
         
         makeButton(add);
         
+        price = new RangeSlider(0,50);
+        price.setUpperValue(50);
+        price.setValue(0);
+        price.setPaintLabels(true);
+        price.setPaintTicks(true);
+        
+        availability = new RangeSlider(0,50);
+        availability.setUpperValue(50);
+        availability.setValue(0);
+        availability.setPaintLabels(true);
+        availability.setPaintTicks(true);
+        
+        price.setPreferredSize(new Dimension(125, price.getPreferredSize().height));
+        availability.setPreferredSize(new Dimension(125, price.getPreferredSize().height));
+        
+        filterMenu.setLayout(new AbsoluteLayout());
+        filterMenu.add(price, new AbsoluteConstraints(10,70));
+        filterMenu.add(availability, new AbsoluteConstraints(10,180));
+        
+        price.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                RangeSlider slider = (RangeSlider) e.getSource();
+                windowManager(WindowState.RANGE_PRICE, null, price.getValue(), price.getUpperValue(),0,0);
+               
+            }
+        });
+        
+        availability.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                RangeSlider slider = (RangeSlider) e.getSource();
+                windowManager(WindowState.RANGE_PRICE, null,0,0,availability.getValue(),availability.getUpperValue());
+                
+            }
+        });
+        
         try {
             //Set the file to be used in this program to store the products
             file    = new java.io.File("products");
@@ -169,7 +212,8 @@ public class MainInterface extends javax.swing.JFrame {
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
         filterMenu.setVisible(false);
-        windowManager(WindowState.INV_FULL, null);
+        
+        windowManager(WindowState.INV_FULL, null,0,0,0,0);
     }
 
     /**
@@ -197,12 +241,14 @@ public class MainInterface extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         searchProduct = new javax.swing.JTextField();
+        filterBox = new javax.swing.JComboBox<>();
         slidingMenu = new javax.swing.JPanel();
         inventoryBtn = new javax.swing.JLabel();
         clientsBtn = new javax.swing.JLabel();
         historyBtn = new javax.swing.JLabel();
         filterMenu = new javax.swing.JPanel();
-        filterBox = new javax.swing.JComboBox<>();
+        priceL = new javax.swing.JLabel();
+        priceL1 = new javax.swing.JLabel();
         inventory = new javax.swing.JPanel();
         addProductPane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -272,10 +318,16 @@ public class MainInterface extends javax.swing.JFrame {
         });
         mainOptionBar.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 40));
 
+        filterBtn.setBackground(primary);
         filterBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        filterBtn.setText("Filtrar ");
+        filterBtn.setText("Filtrar por: ");
         filterBtn.setToolTipText("");
-        mainOptionBar.add(filterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 110, 30));
+        filterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterBtnMouseClicked(evt);
+            }
+        });
+        mainOptionBar.add(filterBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, 140, 30));
 
         searchPanel.setBackground(primary);
         searchPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -303,6 +355,14 @@ public class MainInterface extends javax.swing.JFrame {
         searchPanel.add(searchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 4, 320, 30));
 
         mainOptionBar.add(searchPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 330, 40));
+
+        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Categoria", "Sub Cartegoria" }));
+        filterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterBoxActionPerformed(evt);
+            }
+        });
+        mainOptionBar.add(filterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 120, -1));
 
         getContentPane().add(mainOptionBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 45));
 
@@ -334,21 +394,26 @@ public class MainInterface extends javax.swing.JFrame {
 
         getContentPane().add(slidingMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 50, 470));
 
+        filterMenu.setBackground(primary);
         filterMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        filterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Categoria", "Sub Cartegoria" }));
-        filterBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterBoxActionPerformed(evt);
-            }
-        });
-        filterMenu.add(filterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
+        priceL.setBackground(primary);
+        priceL.setForeground(new java.awt.Color(255, 255, 255));
+        priceL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        priceL.setText("Disponibilidad:");
+        filterMenu.add(priceL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 140, 30));
 
-        getContentPane().add(filterMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 80, 100, 470));
+        priceL1.setBackground(primary);
+        priceL1.setForeground(new java.awt.Color(255, 255, 255));
+        priceL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        priceL1.setText("Precio:");
+        filterMenu.add(priceL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 140, 30));
+
+        getContentPane().add(filterMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 140, 470));
 
         inventory.setBackground(secondary);
         inventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
+        getContentPane().add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 890, 470));
 
         addProductPane.setBackground(secondary);
         addProductPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -389,7 +454,7 @@ public class MainInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inventoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryBtnMouseClicked
-        windowManager(WindowState.INV_FULL, null);
+        windowManager(WindowState.INV_FULL, null,0,0,0,0);
     }//GEN-LAST:event_inventoryBtnMouseClicked
 
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
@@ -434,16 +499,16 @@ public class MainInterface extends javax.swing.JFrame {
             
             switch(filterKey){
                 
-                case "Nombre": windowManager(WindowState.INV_SR_NAME, searchKey);
+                case "Nombre": windowManager(WindowState.INV_SR_NAME, searchKey,0,0,0,0);
                 break;
                 
-                case "Categoria": windowManager(WindowState.INV_SR_CATEGORY, searchKey);
+                case "Categoria": windowManager(WindowState.INV_SR_CATEGORY, searchKey,0,0,0,0);
                 break;
                 
-                case "SubCategoria": windowManager(WindowState.INV_SR_SUBCATEGORY, searchKey);
+                case "SubCategoria": windowManager(WindowState.INV_SR_SUBCATEGORY, searchKey,0,0,0,0);
                 break;
                 
-                default : windowManager(WindowState.INV_SR_NAME, searchKey);
+                default : windowManager(WindowState.INV_SR_NAME, searchKey,0,0,0,0);
             }
             
         }
@@ -452,6 +517,14 @@ public class MainInterface extends javax.swing.JFrame {
     private void filterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filterBoxActionPerformed
+
+    private void filterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterBtnMouseClicked
+        // TODO add your handling code here:
+        filterMenu.setVisible(!filterMenu.isVisible());
+        price.setVisible(true);
+        availability.setVisible(true);
+        
+    }//GEN-LAST:event_filterBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -515,6 +588,8 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
+    private javax.swing.JLabel priceL;
+    private javax.swing.JLabel priceL1;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel searchResult;
@@ -564,6 +639,7 @@ public class MainInterface extends javax.swing.JFrame {
     /*
         PAINT THE INVENTORY PANEL WITH THE GIVEN LIST
     */
+    
     private void paintInventory(ArrayList<Product> productsToShow){
         Product product;
         int numberOfProducts    = productsToShow == null ? 0 : productsToShow.size(); 
@@ -572,7 +648,6 @@ public class MainInterface extends javax.swing.JFrame {
         inventory.revalidate();
         inventory.repaint();
         inventory.setVisible(true);
-        
         //x position, y position, width, height, margen, counter, columns
         int x, y, w = 180, h = 60, m = 37, i = 0, co = 4;
 
@@ -582,13 +657,14 @@ public class MainInterface extends javax.swing.JFrame {
             product = productsToShow.get(i);
             inventory.add(product.exportAsPane(), new AbsoluteConstraints(x, y, w, h));
             i++;
-        }   
+        }
+        
     }
     
     /*
         MANAGE ALL THE WINDOW STATES 
     */
-    private void windowManager(WindowState state, String searchKey){
+    private void windowManager(WindowState state, String searchKey, int minPrice, int maxPrice, int minAval, int maxAval){
        File productsFile   = new File(raf);
        ArrayList <Product> products = null;
         
@@ -619,6 +695,20 @@ public class MainInterface extends javax.swing.JFrame {
            case INV_SR_SUBCATEGORY: 
                try {
                     products  = productsFile.searchBySubCategory(searchKey);
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+            
+           case RANGE_PRICE:
+               try {
+                    products  = productsFile.searchByPriceRange(minPrice,maxPrice);
+                    } catch (IOException e) { pr ("IOException: " + e); }
+                 paintInventory(products);
+            break;
+            
+           case RANGE_AVAL:
+               try {
+                    products  = productsFile.searchByAvalRange(minAval,maxAval);
                     } catch (IOException e) { pr ("IOException: " + e); }
                  paintInventory(products);
             break;
