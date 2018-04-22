@@ -222,6 +222,7 @@ public class MainInterface extends javax.swing.JFrame {
         subcategoryField = new javax.swing.JTextField();
         productBtn = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JLabel();
+        searchResult = new javax.swing.JLabel();
         clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
@@ -396,21 +397,33 @@ public class MainInterface extends javax.swing.JFrame {
         });
         addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 30));
 
+        codeField.setBackground(secondary);
+        codeField.setForeground(foreground);
         codeField.setText("Código");
         addProductPane.add(codeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
 
+        descriptionField.setBackground(secondary);
+        descriptionField.setForeground(foreground);
         descriptionField.setText("Descripción");
         addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
 
+        brandField.setBackground(secondary);
+        brandField.setForeground(foreground);
         brandField.setText("Marca");
         addProductPane.add(brandField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
 
+        modelField.setBackground(secondary);
+        modelField.setForeground(foreground);
         modelField.setText("Modelo");
         addProductPane.add(modelField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
 
+        categoryField.setBackground(secondary);
+        categoryField.setForeground(foreground);
         categoryField.setText("Categoría");
         addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
 
+        subcategoryField.setBackground(secondary);
+        subcategoryField.setForeground(foreground);
         subcategoryField.setText("Subcategoría");
         addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 170, 30));
 
@@ -435,6 +448,10 @@ public class MainInterface extends javax.swing.JFrame {
         });
         addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
 
+        searchResult.setForeground(new java.awt.Color(255, 255, 255));
+        searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addProductPane.add(searchResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 320, 20));
+
         getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
         clients.setBackground(new java.awt.Color(204, 0, 51));
@@ -447,7 +464,9 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void inventoryBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryBtnMouseClicked
         windowManager(WindowState.INV_FULL, null);
-        //nameField.setEditable(false);
+        //clients.setVisible(false);
+        //inventory.setVisible(true);
+        //addProductPane.setVisible(false);
     }//GEN-LAST:event_inventoryBtnMouseClicked
 
     private void search1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search1MouseClicked
@@ -519,12 +538,16 @@ public class MainInterface extends javax.swing.JFrame {
     private void productBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productBtnMouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
-        windowManager(WindowState.INV_FULL, null);
+        clients.setVisible(false);
+        inventory.setVisible(true);
+        addProductPane.setVisible(false);
     }//GEN-LAST:event_productBtnMouseClicked
 
     private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
         // TODO add your handling code here:
-        windowManager(WindowState.INV_FULL, null);
+        clients.setVisible(false);
+        inventory.setVisible(true);
+        addProductPane.setVisible(false);
     }//GEN-LAST:event_cancelBtnMouseClicked
 
     /**

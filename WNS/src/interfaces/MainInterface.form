@@ -506,6 +506,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="codeField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
           </Properties>
           <Constraints>
@@ -516,6 +522,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="descriptionField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
           </Properties>
           <Constraints>
@@ -526,6 +538,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="brandField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Marca"/>
           </Properties>
           <Constraints>
@@ -536,6 +554,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="modelField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Modelo"/>
           </Properties>
           <Constraints>
@@ -546,6 +570,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="categoryField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Categor&#xed;a"/>
           </Properties>
           <Constraints>
@@ -556,6 +586,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="subcategoryField">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="secondary" type="code"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="foreground" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Subcategor&#xed;a"/>
           </Properties>
           <Constraints>
