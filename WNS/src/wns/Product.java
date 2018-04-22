@@ -43,7 +43,12 @@ public class Product {
     private JLabel availabilityLbl;
     private JLabel imageLbl;
     
-    public Product () {}
+    public Product () {
+        name = description = category = subcategory = location = "";
+        price = availability = 0;
+        status = ACTIVE;
+        nextInFile = -1;
+    }
     
     public Product (String name, String category, String subcategory, String description, String location, double price, int availability) {
         this.name           = name;
@@ -143,7 +148,7 @@ public class Product {
      * Price cannot be a negative or zero number.
      * @param newPrice
      */
-    public void setPrice (int newPrice) {
+    public void setPrice (double newPrice) {
         if (newPrice <= 0)
             System.out.println("\tPrice should be nonnegative!");
         else

@@ -33,8 +33,9 @@ public class File {
         int x = 0;
         
         raf.seek(x);
-        while (raf.readByte() != -1) {
+        while (raf.readByte() != -1) {System.out.println("x = " + x);
             temp.read(x, raf);
+            temp.display();
             
             x = temp.getNext();
         }
