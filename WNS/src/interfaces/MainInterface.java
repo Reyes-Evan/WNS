@@ -215,15 +215,15 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
-        codeField = new javax.swing.JTextField();
         descriptionField = new javax.swing.JTextField();
-        brandField = new javax.swing.JTextField();
-        modelField = new javax.swing.JTextField();
+        locateField = new javax.swing.JTextField();
+        availableField = new javax.swing.JTextField();
         categoryField = new javax.swing.JTextField();
         subcategoryField = new javax.swing.JTextField();
         productBtn = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JLabel();
         searchResult = new javax.swing.JLabel();
+        priceField = new javax.swing.JTextField();
         clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
@@ -364,26 +364,34 @@ public class MainInterface extends javax.swing.JFrame {
         addProductPane.setBackground(secondary);
         addProductPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Subcategoría");
-        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 90, 30));
+        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 90, 30));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
         addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, 30));
 
-        jLabel4.setText("Código");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Precio");
         addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 80, 30));
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Descripción");
-        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 80, 30));
+        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, 30));
 
-        jLabel6.setText("Marca");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Localización");
+        jLabel6.setToolTipText("");
         addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 80, 30));
 
-        jLabel7.setText("Modelo");
-        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 80, 30));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Disponibilidad");
+        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 80, 30));
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Categoría");
-        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 90, 30));
+        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 90, 30));
 
         nameField.setBackground(secondary);
         nameField.setForeground(foreground);
@@ -392,31 +400,26 @@ public class MainInterface extends javax.swing.JFrame {
         nameField.setCaretColor(new java.awt.Color(255, 255, 255));
         addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 30));
 
-        codeField.setBackground(secondary);
-        codeField.setForeground(foreground);
-        codeField.setToolTipText("");
-        addProductPane.add(codeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
-
         descriptionField.setBackground(secondary);
         descriptionField.setForeground(foreground);
         descriptionField.setToolTipText("");
-        addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
+        addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 390, 50));
 
-        brandField.setBackground(secondary);
-        brandField.setForeground(foreground);
-        addProductPane.add(brandField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
+        locateField.setBackground(secondary);
+        locateField.setForeground(foreground);
+        addProductPane.add(locateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
 
-        modelField.setBackground(secondary);
-        modelField.setForeground(foreground);
-        addProductPane.add(modelField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
+        availableField.setBackground(secondary);
+        availableField.setForeground(foreground);
+        addProductPane.add(availableField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
 
         categoryField.setBackground(secondary);
         categoryField.setForeground(foreground);
-        addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
+        addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
 
         subcategoryField.setBackground(secondary);
         subcategoryField.setForeground(foreground);
-        addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 170, 30));
+        addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
 
         productBtn.setBackground(secondary);
         productBtn.setForeground(foreground);
@@ -426,7 +429,7 @@ public class MainInterface extends javax.swing.JFrame {
                 productBtnMouseClicked(evt);
             }
         });
-        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 140, 40));
+        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 140, 40));
 
         cancelBtn.setBackground(secondary);
         cancelBtn.setForeground(foreground);
@@ -437,11 +440,15 @@ public class MainInterface extends javax.swing.JFrame {
                 cancelBtnMouseClicked(evt);
             }
         });
-        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 110, 40));
+        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 110, 40));
 
         searchResult.setForeground(new java.awt.Color(255, 255, 255));
         searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addProductPane.add(searchResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 320, 20));
+
+        priceField.setBackground(secondary);
+        priceField.setForeground(foreground);
+        addProductPane.add(priceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
 
         getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
@@ -526,7 +533,7 @@ public class MainInterface extends javax.swing.JFrame {
         Product newProduct = new Product();
         File listProducts = new File(productsRAF);
         
-        if (nameField.getText().isEmpty() || descriptionField.getText().isEmpty() || categoryField.getText().isEmpty() || subcategoryField.getText().isEmpty() || brandField.getText().isEmpty() || codeField.getText().isEmpty() || modelField.getText().isEmpty()){
+        if (nameField.getText().isEmpty() || descriptionField.getText().isEmpty() || categoryField.getText().isEmpty() || subcategoryField.getText().isEmpty() || locateField.getText().isEmpty() || priceField.getText().isEmpty() || availableField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Todos los campos deben ser rellenados", "Error: checar campos", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
@@ -534,9 +541,9 @@ public class MainInterface extends javax.swing.JFrame {
             newProduct.setDescription(descriptionField.getText());
             newProduct.setCategory(categoryField.getText());
             newProduct.setSubcategory(subcategoryField.getText());
-            newProduct.setLocation(brandField.getText());
-            newProduct.setPrice(Double.parseDouble(codeField.getText()));
-            newProduct.setAvailability(Integer.parseInt(modelField.getText()));
+            newProduct.setLocation(locateField.getText());
+            newProduct.setPrice(Double.parseDouble(priceField.getText()));
+            newProduct.setAvailability(Integer.parseInt(availableField.getText()));
 //            String name = nameField.getText();
 //            String description = descriptionField.getText();
 //            String category = categoryField.getText();
@@ -564,9 +571,9 @@ public class MainInterface extends javax.swing.JFrame {
             descriptionField.setText(null);
             categoryField.setText(null);
             subcategoryField.setText(null);
-            brandField.setText(null);
-            codeField.setText(null);
-            modelField.setText(null);
+            locateField.setText(null);
+            priceField.setText(null);
+            availableField.setText(null);
         }    
     }//GEN-LAST:event_productBtnMouseClicked
 
@@ -576,9 +583,9 @@ public class MainInterface extends javax.swing.JFrame {
         descriptionField.setText(null);
         categoryField.setText(null);
         subcategoryField.setText(null);
-        brandField.setText(null);
-        codeField.setText(null);
-        modelField.setText(null);
+        locateField.setText(null);
+        priceField.setText(null);
+        availableField.setText(null);
         
         clients.setVisible(false);
         inventory.setVisible(true);
@@ -624,12 +631,11 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel add;
     private javax.swing.JPanel addProductPane;
     private javax.swing.JPanel appBar;
-    private javax.swing.JTextField brandField;
+    private javax.swing.JTextField availableField;
     private javax.swing.JLabel cancelBtn;
     private javax.swing.JTextField categoryField;
     private javax.swing.JPanel clients;
     private javax.swing.JLabel clientsBtn;
-    private javax.swing.JTextField codeField;
     private javax.swing.JTextField descriptionField;
     private javax.swing.JComboBox<String> filterBox;
     private javax.swing.JLabel filterBtn;
@@ -649,11 +655,12 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField locateField;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
-    private javax.swing.JTextField modelField;
     private javax.swing.JTextField nameField;
+    private javax.swing.JTextField priceField;
     private javax.swing.JLabel productBtn;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchProduct;
