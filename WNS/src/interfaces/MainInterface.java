@@ -537,12 +537,24 @@ public class MainInterface extends javax.swing.JFrame {
             newProduct.setLocation(brandField.getText());
             newProduct.setPrice(Double.parseDouble(codeField.getText()));
             newProduct.setAvailability(Integer.parseInt(modelField.getText()));
+//            String name = nameField.getText();
+//            String description = descriptionField.getText();
+//            String category = categoryField.getText();
+//            String subcategory = subcategoryField.getText();
+//            String location = brandField.getText();
+//            double price = Double.parseDouble(codeField.getText());
+//            int availability = Integer.parseInt(modelField.getText());
             
-            /*try {
+            newProduct.display();
+            
+            try {
+                pr ("BEFORE");
+//                listProducts.insert(new Product(name, category, subcategory, description, location, price, availability));
                 listProducts.insert(newProduct);
+                pr ("AFTER");
             } catch (IOException ex) {
                 pr ("IOException: " + ex);
-            }*/
+            }
             JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
             
             clients.setVisible(false);
