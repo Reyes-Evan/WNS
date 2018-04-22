@@ -253,4 +253,36 @@ public class File {
         
        return result;
     }
+
+    public ArrayList<Product> searchByPriceRange(int minPrice, int maxPrice) throws IOException {
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        double price = 0;
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            price = inventory.get(i).getPrice();
+            if((price>=minPrice) && (price<=maxPrice))
+                result.add(inventory.get(i));
+        }
+        
+       return result;
+    }
+
+    public ArrayList<Product> searchByAvalRange(int minAval, int maxAval) throws IOException {
+        ArrayList<Product> inventory = new ArrayList();
+        ArrayList<Product> result = new ArrayList();
+        inventory = allProducts();
+        int aval = 0;
+        
+        for(int i = 0; i < inventory.size() ; i++){
+            aval = inventory.get(i).getAvailability();
+            if((aval>=minAval) && (aval<=maxAval))
+                result.add(inventory.get(i));
+        }
+        
+       return result;
+    }
+    
+    
 }
