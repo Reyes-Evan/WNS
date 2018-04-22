@@ -4,7 +4,6 @@
  * Ingeniería en Sistemas Computacionales. UDLAP.
  */
 package interfaces;
-//CAMBIO CHIQUITO
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -20,6 +19,7 @@ import resources.Style;
  *@author Juan Carlos
  *@author Reyes
  *@author Dulio Caggiano
+ *@author Jose Miguel
  *@author  Jordi Omar 
  */
 public class MainInterface extends javax.swing.JFrame {
@@ -154,7 +154,6 @@ public class MainInterface extends javax.swing.JFrame {
         makeButton(historyBtn);
         makeButton(productBtn);
         makeButton(cancelBtn);
-        
         makeButton(add);
         
         try {
@@ -169,7 +168,7 @@ public class MainInterface extends javax.swing.JFrame {
         
         inventory.setVisible(true);
         slidingMenu.setVisible(false);
-        
+        addProductPane.setVisible(false);
         //viewInventory();
     }
 
@@ -386,45 +385,36 @@ public class MainInterface extends javax.swing.JFrame {
 
         nameField.setBackground(secondary);
         nameField.setForeground(foreground);
-        nameField.setText("Nombre");
         nameField.setToolTipText("");
         nameField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         nameField.setCaretColor(new java.awt.Color(255, 255, 255));
-        nameField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameFieldMouseClicked(evt);
-            }
-        });
         addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 30));
 
         codeField.setBackground(secondary);
         codeField.setForeground(foreground);
-        codeField.setText("Código");
+        codeField.setText(" ");
+        codeField.setToolTipText("");
         addProductPane.add(codeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
 
         descriptionField.setBackground(secondary);
         descriptionField.setForeground(foreground);
-        descriptionField.setText("Descripción");
+        descriptionField.setToolTipText("");
         addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
 
         brandField.setBackground(secondary);
         brandField.setForeground(foreground);
-        brandField.setText("Marca");
         addProductPane.add(brandField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
 
         modelField.setBackground(secondary);
         modelField.setForeground(foreground);
-        modelField.setText("Modelo");
         addProductPane.add(modelField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
 
         categoryField.setBackground(secondary);
         categoryField.setForeground(foreground);
-        categoryField.setText("Categoría");
         addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
 
         subcategoryField.setBackground(secondary);
         subcategoryField.setForeground(foreground);
-        subcategoryField.setText("Subcategoría");
         addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 170, 30));
 
         productBtn.setBackground(secondary);
@@ -435,7 +425,7 @@ public class MainInterface extends javax.swing.JFrame {
                 productBtnMouseClicked(evt);
             }
         });
-        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 400, -1, -1));
+        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 140, 40));
 
         cancelBtn.setBackground(secondary);
         cancelBtn.setForeground(foreground);
@@ -446,7 +436,7 @@ public class MainInterface extends javax.swing.JFrame {
                 cancelBtnMouseClicked(evt);
             }
         });
-        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 110, 40));
 
         searchResult.setForeground(new java.awt.Color(255, 255, 255));
         searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -530,21 +520,49 @@ public class MainInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_filterBoxActionPerformed
 
-    private void nameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameFieldMouseClicked
-        // TODO add your handling code here:
-        nameField.setText(null);
-    }//GEN-LAST:event_nameFieldMouseClicked
-
     private void productBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productBtnMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
-        clients.setVisible(false);
-        inventory.setVisible(true);
-        addProductPane.setVisible(false);
+        Product newProduct = new Product();
+        
+        if (nameField.getText().isEmpty() || descriptionField.getText().isEmpty() || categoryField.getText().isEmpty() || subcategoryField.getText().isEmpty() || brandField.getText().isEmpty() || codeField.getText().isEmpty() || modelField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Todos los campos deben ser rellenados", "Error: checar campos", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            newProduct.setName(nameField.getText());
+            newProduct.setDescription(descriptionField.getText());
+            newProduct.setCategory(categoryField.getText());
+            newProduct.setSubcategory(subcategoryField.getText());
+            newProduct.setLocation(brandField.getText());
+            newProduct.setPrice(Integer.parseInt(codeField.getText()));
+            newProduct.setAvailability(Integer.parseInt(modelField.getText()));
+            
+            //raf.insert(newProduct);
+            JOptionPane.showMessageDialog(null, "Producto añadido con éxito", "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
+            
+            clients.setVisible(false);
+            inventory.setVisible(true);
+            addProductPane.setVisible(false);
+            
+            nameField.setText(null);
+            descriptionField.setText(null);
+            categoryField.setText(null);
+            subcategoryField.setText(null);
+            brandField.setText(null);
+            codeField.setText(null);
+            modelField.setText(null);
+        }    
     }//GEN-LAST:event_productBtnMouseClicked
 
     private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
         // TODO add your handling code here:
+        nameField.setText(null);
+        descriptionField.setText(null);
+        categoryField.setText(null);
+        subcategoryField.setText(null);
+        brandField.setText(null);
+        codeField.setText(null);
+        modelField.setText(null);
+        
         clients.setVisible(false);
         inventory.setVisible(true);
         addProductPane.setVisible(false);
