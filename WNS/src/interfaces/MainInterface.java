@@ -1,12 +1,6 @@
-/*
- * Carlos Andrés Reyes Evangelista
- * 157068
- * Ingeniería en Sistemas Computacionales. UDLAP.
- */
+
 package interfaces;
 
-
-//CAMBIO CHIQUITO
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -27,8 +21,8 @@ import slider.*;
  *@author Juan Carlos
  *@author Reyes
  *@author Dulio Caggiano
- *@author Jose Miguel
- *@author  Jordi Omar 
+ *@author Jose Miguel García Reyes 155871
+ *@author Jordi Omar Ponce Bonfil
  */
 public class MainInterface extends javax.swing.JFrame {
 
@@ -58,8 +52,7 @@ public class MainInterface extends javax.swing.JFrame {
     java.io.File     productsFileX;
     
     RandomAccessFile productsRAF;
-    
-    
+   
     RangeSlider price;
     RangeSlider availability;
     /*
@@ -254,6 +247,10 @@ public class MainInterface extends javax.swing.JFrame {
         priceL1 = new javax.swing.JLabel();
         inventory = new javax.swing.JPanel();
         addProductPane = new javax.swing.JPanel();
+        apearLabel = new javax.swing.JLabel();
+        apearLabel1 = new javax.swing.JLabel();
+        apearLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -267,10 +264,22 @@ public class MainInterface extends javax.swing.JFrame {
         availableField = new javax.swing.JTextField();
         categoryField = new javax.swing.JTextField();
         subcategoryField = new javax.swing.JTextField();
-        productBtn = new javax.swing.JLabel();
-        cancelBtn = new javax.swing.JLabel();
         searchResult = new javax.swing.JLabel();
         priceField = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        cancelBtn = new javax.swing.JLabel();
+        productBtn = new javax.swing.JLabel();
         clients = new javax.swing.JPanel();
 
         jSeparator2.setBackground(foreground);
@@ -321,6 +330,7 @@ public class MainInterface extends javax.swing.JFrame {
         mainOptionBar.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
 
         add.setBackground(primary);
+        add.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         add.setForeground(foreground);
         add.setText("Agregar producto");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -430,74 +440,155 @@ public class MainInterface extends javax.swing.JFrame {
         addProductPane.setBackground(secondary);
         addProductPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        apearLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apearLabel.setForeground(new java.awt.Color(204, 204, 204));
+        apearLabel.setText("Número");
+        addProductPane.add(apearLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+
+        apearLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apearLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        apearLabel1.setText("Número");
+        addProductPane.add(apearLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+
+        apearLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apearLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        apearLabel2.setText("Texto");
+        addProductPane.add(apearLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("$");
+        addProductPane.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 30, 30));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Subcategoría");
-        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 90, 30));
+        jLabel2.setText("SUBCATEGORÍA");
+        addProductPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 110, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre");
-        addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 80, 30));
+        jLabel3.setText("NOMBRE");
+        addProductPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 80, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Precio");
-        addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 80, 30));
+        jLabel4.setText("PRECIO");
+        addProductPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 80, 30));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Descripción");
-        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 80, 30));
+        jLabel5.setText("DESCRIPCIÓN");
+        addProductPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 90, 30));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Localización");
+        jLabel6.setText("LOCALIZACIÓN");
         jLabel6.setToolTipText("");
-        addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 80, 30));
+        addProductPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, 30));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Disponibilidad");
-        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 80, 30));
+        jLabel7.setText("DISPONIBILIDAD");
+        addProductPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 110, 30));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Categoría");
-        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 90, 30));
+        jLabel8.setText("CATEGORÍA");
+        addProductPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 90, 30));
 
         nameField.setBackground(secondary);
         nameField.setForeground(foreground);
         nameField.setToolTipText("");
         nameField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         nameField.setCaretColor(new java.awt.Color(255, 255, 255));
-        addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 30));
+        addProductPane.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 170, 30));
 
         descriptionField.setBackground(secondary);
         descriptionField.setForeground(foreground);
         descriptionField.setToolTipText("");
-        addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 390, 50));
+        descriptionField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        addProductPane.add(descriptionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 450, 40));
 
         locateField.setBackground(secondary);
         locateField.setForeground(foreground);
-        addProductPane.add(locateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, 30));
+        locateField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        locateField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                locateFieldMouseClicked(evt);
+            }
+        });
+        addProductPane.add(locateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 170, 30));
 
         availableField.setBackground(secondary);
         availableField.setForeground(foreground);
-        addProductPane.add(availableField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 170, 30));
+        availableField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        availableField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                availableFieldMouseClicked(evt);
+            }
+        });
+        addProductPane.add(availableField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 170, 30));
 
         categoryField.setBackground(secondary);
         categoryField.setForeground(foreground);
-        addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, 30));
+        categoryField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        addProductPane.add(categoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 170, 30));
 
         subcategoryField.setBackground(secondary);
         subcategoryField.setForeground(foreground);
-        addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 30));
+        subcategoryField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        addProductPane.add(subcategoryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 170, 30));
 
-        productBtn.setBackground(secondary);
-        productBtn.setForeground(foreground);
-        productBtn.setText("Agregar producto");
-        productBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchResult.setForeground(new java.awt.Color(255, 255, 255));
+        searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addProductPane.add(searchResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 320, 20));
+
+        priceField.setBackground(secondary);
+        priceField.setForeground(foreground);
+        priceField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        priceField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                productBtnMouseClicked(evt);
+                priceFieldMouseClicked(evt);
             }
         });
-        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 140, 40));
+        addProductPane.add(priceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 160, 30));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 450, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 170, 10));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 170, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 170, 10));
+
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 170, 10));
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 120, 10));
+
+        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 170, 10));
+        addProductPane.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 270, -1, -1));
+
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 170, 10));
+
+        jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 120, 10));
+
+        jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 110, 10));
+
+        jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPane.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, 110, 10));
 
         cancelBtn.setBackground(secondary);
+        cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         cancelBtn.setForeground(foreground);
         cancelBtn.setText("Cancelar");
         cancelBtn.setToolTipText("");
@@ -506,15 +597,19 @@ public class MainInterface extends javax.swing.JFrame {
                 cancelBtnMouseClicked(evt);
             }
         });
-        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 110, 40));
+        addProductPane.add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 110, 40));
 
-        searchResult.setForeground(new java.awt.Color(255, 255, 255));
-        searchResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addProductPane.add(searchResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 320, 20));
-
-        priceField.setBackground(secondary);
-        priceField.setForeground(foreground);
-        addProductPane.add(priceField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 30));
+        productBtn.setBackground(secondary);
+        productBtn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        productBtn.setForeground(foreground);
+        productBtn.setText("Agregar");
+        productBtn.setToolTipText("");
+        productBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productBtnMouseClicked(evt);
+            }
+        });
+        addProductPane.add(productBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 120, 40));
 
         getContentPane().add(addProductPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 1020, 470));
 
@@ -608,18 +703,10 @@ public class MainInterface extends javax.swing.JFrame {
             newProduct.setLocation(locateField.getText());
             newProduct.setPrice(Double.parseDouble(priceField.getText()));
             newProduct.setAvailability(Integer.parseInt(availableField.getText()));
-//            String name = nameField.getText();
-//            String description = descriptionField.getText();
-//            String category = categoryField.getText();
-//            String subcategory = subcategoryField.getText();
-//            String location = brandField.getText();
-//            double price = Double.parseDouble(codeField.getText());
-//            int availability = Integer.parseInt(modelField.getText());
             
             newProduct.display();
             
             try {
-//                listProducts.insert(new Product(name, category, subcategory, description, location, price, availability));
                 listProducts.insert(newProduct);
                 
             } catch (IOException ex) {
@@ -643,17 +730,9 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
         // TODO add your handling code here:
-        nameField.setText(null);
-        descriptionField.setText(null);
-        categoryField.setText(null);
-        subcategoryField.setText(null);
-        locateField.setText(null);
-        priceField.setText(null);
-        availableField.setText(null);
+        nameField.setText(null); descriptionField.setText(null); categoryField.setText(null); subcategoryField.setText(null); locateField.setText(null); priceField.setText(null); availableField.setText(null);
         
-        clients.setVisible(false);
-        inventory.setVisible(true);
-        addProductPane.setVisible(false);
+        clients.setVisible(false); inventory.setVisible(true); addProductPane.setVisible(false);
     }//GEN-LAST:event_cancelBtnMouseClicked
 
     private void filterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterBtnMouseClicked
@@ -661,8 +740,22 @@ public class MainInterface extends javax.swing.JFrame {
         filterMenu.setVisible(!filterMenu.isVisible());
         price.setVisible(true);
         availability.setVisible(true);
-        
     }//GEN-LAST:event_filterBtnMouseClicked
+
+    private void priceFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceFieldMouseClicked
+        // TODO add your handling code here:
+        apearLabel.setVisible(false);
+    }//GEN-LAST:event_priceFieldMouseClicked
+
+    private void availableFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_availableFieldMouseClicked
+        // TODO add your handling code here:
+        apearLabel1.setVisible(false);
+    }//GEN-LAST:event_availableFieldMouseClicked
+
+    private void locateFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_locateFieldMouseClicked
+        // TODO add your handling code here:
+        apearLabel2.setVisible(false);
+    }//GEN-LAST:event_locateFieldMouseClicked
 
 
     /**
@@ -703,6 +796,9 @@ public class MainInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add;
     private javax.swing.JPanel addProductPane;
+    private javax.swing.JLabel apearLabel;
+    private javax.swing.JLabel apearLabel1;
+    private javax.swing.JLabel apearLabel2;
     private javax.swing.JPanel appBar;
     private javax.swing.JTextField availableField;
     private javax.swing.JLabel cancelBtn;
@@ -725,18 +821,31 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField locateField;
     private javax.swing.JLabel logoLbl;
     private javax.swing.JLabel mainMenu;
     private javax.swing.JPanel mainOptionBar;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField priceField;
-    private javax.swing.JLabel productBtn;
     private javax.swing.JLabel priceL;
     private javax.swing.JLabel priceL1;
+    private javax.swing.JLabel productBtn;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchProduct;
     private javax.swing.JLabel searchResult;
